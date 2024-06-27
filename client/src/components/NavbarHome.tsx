@@ -40,7 +40,7 @@ export default function NavbarHome() {
                                 </DropdownMenuTrigger>
                             </DropdownMenu>
                        
-                            <Button variant="ghost"className='font-serif'><User size={13} className='mr-1' />Connexion</Button>
+                            <Button variant="ghost"><User size={13} className='mr-1' />Connexion</Button>
                         </div>
                     </div>
                 </div>
