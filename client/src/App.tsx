@@ -1,3 +1,6 @@
+import { Route, Routes } from "react-router-dom"
+import Home from "./pages/Home"
+
 export default function App() {
   /**
    * ! STATE (état, données) de l'application
@@ -14,7 +17,9 @@ export default function App() {
    */
   return (
     <>
-      <h1>Mon application</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </>
   )
 }
