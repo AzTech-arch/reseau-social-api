@@ -1,3 +1,5 @@
+import { Button } from "../components/ui/button";
+
 export default function Home() {
     /**
     * ! STATE (état, données) de l'application
@@ -14,7 +16,8 @@ export default function Home() {
      */
     return (
         <>
-            <h1>Bienvenue sur la page d'accueil</h1>
+            <h1>Bienvenue sur la page d'accueil </h1>
+            <Button>Click me</Button>
         </>
     )
 }
