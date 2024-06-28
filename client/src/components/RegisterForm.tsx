@@ -45,7 +45,7 @@ export default function RegisterForm() {
             firstname: data.firstname,
             email: data.email,
             password: data.password
-        };
+        }
 
         try {
             console.log(dataRegister)
@@ -114,7 +114,7 @@ export default function RegisterForm() {
                                         <FormItem>
                                             <FormLabel>E-mail</FormLabel>
                                             <FormControl>
-                                                <Input {...field} placeholder="m@exemple.com" className="shadow-sm" />
+                                                <Input {...field} placeholder="Numéro mobile ou e-mail" className="shadow-sm" />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
