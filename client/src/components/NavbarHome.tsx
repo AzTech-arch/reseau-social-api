@@ -1,8 +1,7 @@
 import { Button } from './ui/button'
 import logo from '../assets/images/logo.png'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
 import { House, BadgeAlert, Contact, Settings, User } from 'lucide-react'
-
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
 
 export default function NavbarHome() {
     /**
