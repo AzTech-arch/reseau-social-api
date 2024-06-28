@@ -19,7 +19,7 @@ export default function NavbarHome() {
      * ! AFFICHAGE (render) de l'application
      */
     return (
-        <div className="container-fluid bg-white p-4 shadow">
+        <div className="relative z-10 w-full bg-white p-4 shadow">
         <div className="mx-auto w-full max-w-6xl">
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-4">
@@ -57,7 +57,7 @@ export default function NavbarHome() {
                                 <Settings size={18} />
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent>
+                        <DropdownMenuContent className="z-50">
                             <DropdownMenuLabel>Theme</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuGroup>
