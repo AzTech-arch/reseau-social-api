@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Eye, EyeOff } from "lucide-react"
-import { useForm } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { Input } from "../components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../components/ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -9,19 +9,51 @@ import { Button } from "./ui/button"
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 
+// Définir le schéma de validation avec Zod
+const formSchema = z.object({
+    lastname: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères" }),
+    firstname: z.string().min(2, { message: "Le prénom doit contenir au moins 2 caractères" }),
+    email: z.string().email({ message: "Adresse e-mail invalide" }),
+    password: z.string().min(8, { message: "Le mot de passe doit contenir au moins 8 caractères" })
+})
+
+// Définir les types des données du formulaire
+type FormSchemaType = z.infer<typeof formSchema>
+
 export default function RegisterForm() {
     /**
-   * ! STATE (état, données) de l'application
-   */
-    const form = useForm()
-
-    const [showPassword, setShowPassword] = useState(false)
+    * ! STATE (état, données) de l'application
+    */
+    const [showPassword, setShowPassword] = useState(false);
+    const form = useForm<FormSchemaType>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            lastname: "",
+            firstname: "",
+            email: "",
+            password: ""
+        }
+    })
 
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
+    const handleRegister: SubmitHandler<FormSchemaType> = async (data) => {
+        // Données à envoyer pour l'inscription
+        const dataRegister = {
+            lastname: data.lastname,
+            firstname: data.firstname,
+            email: data.email,
+            password: data.password
+        };
 
-
+        try {
+            console.log(dataRegister)
+            // Handle form submission
+        } catch (error) {
+            console.error(error)
+        }
+    };
     /**
      * ! AFFICHAGE (render) de l'application
      */
@@ -37,7 +69,7 @@ export default function RegisterForm() {
                     Vous avez déjà un compte ? Accédez-y en cliquant <a href="#" className="underline text-cyan-700">ici</a>
                 </p>
                 <Form {...form}>
-                    <form>
+                    <form onSubmit={form.handleSubmit(handleRegister)}>
                         <div className="grid gap-4">
                             <div className="grid grid-cols-2 gap-4">
 
@@ -45,16 +77,11 @@ export default function RegisterForm() {
                                     <FormField
                                         control={form.control}
                                         name="lastname"
-                                        render={() => (
+                                        render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel>Nom</FormLabel>
                                                 <FormControl>
-                                                    <Input
-                                                        type="text"
-                                                        value=""
-                                                        placeholder="ABDILLAH"
-                                                        required
-                                                    />
+                                                    <Input {...field} placeholder="ABDILLAH" />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -66,16 +93,11 @@ export default function RegisterForm() {
                                     <FormField
                                         control={form.control}
                                         name="firstname"
-                                        render={() => (
+                                        render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel>Prénom</FormLabel>
                                                 <FormControl>
-                                                    <Input
-                                                        type="text"
-                                                        value=""
-                                                        placeholder="Cousema Anjary"
-                                                        required
-                                                    />
+                                                    <Input {...field} placeholder="Cousema Anjary" />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -88,16 +110,11 @@ export default function RegisterForm() {
                                 <FormField
                                     control={form.control}
                                     name="email"
-                                    render={() => (
+                                    render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>E-mail</FormLabel>
                                             <FormControl>
-                                                <Input
-                                                    type="email"
-                                                    value=""
-                                                    placeholder="m@exemple.com"
-                                                    required
-                                                />
+                                                <Input {...field} placeholder="m@exemple.com" />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -110,16 +127,11 @@ export default function RegisterForm() {
                                     <FormField
                                         control={form.control}
                                         name="password"
-                                        render={() => (
+                                        render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel>Mot de passe</FormLabel>
                                                 <FormControl>
-                                                    <Input
-                                                        type="password"
-                                                        value=""
-                                                        placeholder="Entrez votre mot de passe"
-                                                        required
-                                                    />
+                                                    <Input {...field} type={showPassword ? "text" : "password"} placeholder="Entrez votre mot de passe" />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
