@@ -81,7 +81,7 @@ export default function RegisterForm() {
                                             <FormItem>
                                                 <FormLabel>Nom</FormLabel>
                                                 <FormControl>
-                                                    <Input {...field} placeholder="ABDILLAH" />
+                                                    <Input {...field} placeholder="ABDILLAH" className="shadow-sm" />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -97,7 +97,7 @@ export default function RegisterForm() {
                                             <FormItem>
                                                 <FormLabel>Prénom</FormLabel>
                                                 <FormControl>
-                                                    <Input {...field} placeholder="Cousema Anjary" />
+                                                    <Input {...field} placeholder="Cousema Anjary" className="shadow-sm"  />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -114,7 +114,7 @@ export default function RegisterForm() {
                                         <FormItem>
                                             <FormLabel>E-mail</FormLabel>
                                             <FormControl>
-                                                <Input {...field} placeholder="m@exemple.com" />
+                                                <Input {...field} placeholder="m@exemple.com" className="shadow-sm" />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -131,7 +131,7 @@ export default function RegisterForm() {
                                             <FormItem>
                                                 <FormLabel>Mot de passe</FormLabel>
                                                 <FormControl>
-                                                    <Input {...field} type={showPassword ? "text" : "password"} placeholder="Entrez votre mot de passe" />
+                                                    <Input {...field} type={showPassword ? "text" : "password"} placeholder="Entrez votre mot de passe" className="shadow-sm" />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
