@@ -1,7 +1,8 @@
-import logo from '../assets/images/logo.png'
 import { Button } from './ui/button'
-import { House, BadgeAlert, Contact, Settings, User } from 'lucide-react';
-import { DropdownMenu, DropdownMenuTrigger } from './ui/dropdown-menu';
+import logo from '../assets/images/logo.png'
+import { DropdownMenu, DropdownMenuTrigger } from './ui/dropdown-menu'
+import { House, BadgeAlert, Contact, Settings, User } from 'lucide-react'
+
 
 export default function NavbarHome() {
     /**
