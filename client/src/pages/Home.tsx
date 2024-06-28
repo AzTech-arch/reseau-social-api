@@ -1,7 +1,6 @@
 import Navbar from "../components/NavbarHome"
 import logo from '../assets/images/logo.png'
 import { Button } from "../components/ui/button"
-import { HoverBorderGradient } from "../components/ui/hover-border-gradient";
 
 export default function Home() {
     /**
@@ -26,11 +25,8 @@ export default function Home() {
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-7xl font-serif max-w-3xl">Découvrez de nouveaux amis avec<span><img src={logo} alt="logo" className="w-64 h-auto object-contain inline-block" /></span></h1>
                 <p className=" text-xl text-muted-foreground max-w-3xl"> Rejoignez notre communauté pour rencontrer de nouvelles personnes, partager des moments et explorer des intérêts communs.  </p>
                 <div className="mt-6 flex justify-center gap-4">
-                    <HoverBorderGradient as="button" className="dark:bg-black  text-white dark:text-white flex items-center space-x-2 bg-cyan-700">
-                        <span>Accèdez maintenant</span>
-                    </HoverBorderGradient>
-                   
-                    <Button variant="outline" className="py-0">Créer un compte</Button>
+                    <Button className="bg-cyan-700" >Accèdez maintenant</Button>
+                    <Button variant="outline">Créer un compte</Button>
 
                 </div>
             </div>
