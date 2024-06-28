@@ -3,7 +3,6 @@ import logo from '../assets/images/logo.png'
 import { Link } from 'react-router-dom'
 import { House, BadgeAlert, Contact, Settings, User } from 'lucide-react'
 import { MdLightMode, MdDarkMode } from "react-icons/md"
-
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
 
 export default function NavbarHome() {
