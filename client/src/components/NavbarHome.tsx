@@ -22,10 +22,10 @@ export default function NavbarHome() {
         <div className="relative z-10 w-full bg-white p-4 shadow">
         <div className="mx-auto w-full max-w-6xl">
             <div className="flex justify-between items-center">
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
                     <img src={logo} alt="logo" className="w-24 h-auto object-contain" />
                     <nav>
-                        <ul className="flex items-center gap-4">
+                        <ul className="flex items-center gap-1">
                             <li>
                                 <a href="">
                                     <Button variant="ghost" className="flex items-center gap-1">
