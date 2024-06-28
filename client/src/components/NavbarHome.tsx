@@ -1,5 +1,6 @@
 import { Button } from './ui/button'
 import logo from '../assets/images/logo.png'
+import { Link } from 'react-router-dom'
 import { House, BadgeAlert, Contact, Settings, User } from 'lucide-react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
 
@@ -26,11 +27,11 @@ export default function NavbarHome() {
                     <nav>
                         <ul className="flex items-center gap-1">
                             <li>
-                                <a href="">
+                                <Link to= "/">
                                     <Button variant="ghost" className="flex items-center gap-1">
                                         <House size={18} className="mr-1" /> Accueil
                                     </Button>
-                                </a>
+                                </Link>
                             </li>
                             <li>
                                 <a href="">

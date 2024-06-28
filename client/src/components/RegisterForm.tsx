@@ -1,10 +1,20 @@
 import { useState } from "react"
 import { Eye, EyeOff } from "lucide-react"
+import { useForm } from "react-hook-form"
+import { Input } from "../components/ui/input"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../components/ui/form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
+import { Button } from "./ui/button"
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 export default function RegisterForm() {
     /**
    * ! STATE (état, données) de l'application
    */
+    const form = useForm()
+
     const [showPassword, setShowPassword] = useState(false)
 
     /**
@@ -17,45 +27,138 @@ export default function RegisterForm() {
      */
     return (
         <>
-          
-                <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
-                    <h1 className="text-3xl font-bold mb-4">Créer un compte</h1>
-                    <p className="mb-4 text-gray-600">
-                        Faites partie de la communauté FriendZy, où vous pourrez rencontrer et discuter avec de nouveaux amis et partager des intérêts communs !
-                    </p>
-                    <p className="mb-4 text-gray-600">
-                        Vous avez déjà un compte ? <a href="#" className="text-blue-600">Accédez-y en cliquant ici</a>
-                    </p>
+
+            <div className="p-8 max-w-lg w-full">
+                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-4xl mb-4 font-serif">Créer un compte</h1>
+                <p className="mb-4 text-md text-muted-foreground text-black">
+                    Faites partie de la communauté FriendZy, où vous pourrez rencontrer et discuter avec de nouveaux amis et partager des intérêts communs !
+                </p>
+                <p className="mb-4 text-sm text-muted-foreground">
+                    Vous avez déjà un compte ? Accédez-y en cliquant <a href="#" className="underline text-cyan-700">ici</a>
+                </p>
+                <Form {...form}>
                     <form>
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-                                Nom d’utilisateur
-                            </label>
-                            <input id="username" type="text" placeholder="JohnDoe" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-                        </div>
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                                E-mail
-                            </label>
-                            <input id="email" type="email" placeholder="email@domaine.com" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-                        </div>
-                        <div className="mb-4 relative">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                                Mot de passe
-                            </label>
-                            <input id="password" type={showPassword ? "text" : "password"} placeholder="********" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
-                            <button type="button" className="absolute inset-y-0 right-0 px-3 py-2 text-gray-600" onClick={() => setShowPassword(!showPassword)}>
-                                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                            </button>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <button className="bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                                Soumettre
-                            </button>
+                        <div className="grid gap-4">
+                            <div className="grid grid-cols-2 gap-4">
+
+                                <div className="grid gap-2">
+                                    <FormField
+                                        control={form.control}
+                                        name="lastname"
+                                        render={() => (
+                                            <FormItem>
+                                                <FormLabel>Nom</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        type="text"
+                                                        value=""
+                                                        placeholder="ABDILLAH"
+                                                        required
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                                <div className="grid gap-2">
+                                    <FormField
+                                        control={form.control}
+                                        name="firstname"
+                                        render={() => (
+                                            <FormItem>
+                                                <FormLabel>Prénom</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        type="text"
+                                                        value=""
+                                                        placeholder="Cousema Anjary"
+                                                        required
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid gap-2">
+                                <FormField
+                                    control={form.control}
+                                    name="email"
+                                    render={() => (
+                                        <FormItem>
+                                            <FormLabel>E-mail</FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    type="email"
+                                                    value=""
+                                                    placeholder="m@exemple.com"
+                                                    required
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+
+                            <div className="grid grid-cols-10 gap-2">
+                                <div className=" col-span-9">
+                                    <FormField
+                                        control={form.control}
+                                        name="password"
+                                        render={() => (
+                                            <FormItem>
+                                                <FormLabel>Mot de passe</FormLabel>
+                                                <FormControl>
+                                                    <Input
+                                                        type="password"
+                                                        value=""
+                                                        placeholder="Entrez votre mot de passe"
+                                                        required
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+
+                                <div className="gap-2">
+                                    <Button type="button" variant="outline" className="mt-8 p-2 shadow-sm" onClick={() => setShowPassword(!showPassword)}>
+                                        {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+                                    </Button>
+                                </div>
+                            </div>
+                            <Button type="submit" className="w-full bg-cyan-700">S'inscrire</Button>
+
+                            <div className="relative">
+                                <div className="absolute inset-0 flex items-center">
+                                    <span className="w-full border-t"></span>
+                                </div>
+                                <div className="relative flex justify-center text-xs uppercase ">
+                                    <span className="bg-background px-2 text-muted-foreground">Ou continuer avec</span>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="grid gap-2">
+                                    <Button type="button" variant="outline" className="w-full"><FcGoogle size={18} className="mr-1" />Google</Button>
+                                </div>
+
+                                <div className="grid gap-2">
+                                    <Button type="button" variant="outline" className="w-full"><FaGithub size={18} className="mr-1" />GitHub</Button>
+                                </div>
+                            </div>
                         </div>
                     </form>
-                </div>
-           
+                </Form>
+
+            </div>
+
         </>
     )
 }
