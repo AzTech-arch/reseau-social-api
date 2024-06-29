@@ -15,6 +15,7 @@ export default function App() {
    */
 
 
+
   /**
    * ! AFFICHAGE (render) de l'application
    */
@@ -24,7 +25,6 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-
         <Route path="/friendzy" element={<DashboardClient />} />
       </Routes>
     </>
