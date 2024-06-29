@@ -6,8 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { Button } from "./ui/button"
-import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc"
 
 // Définir le schéma de validation avec Zod
 const formSchema = z.object({
@@ -155,16 +154,10 @@ export default function RegisterForm() {
                                     <span className="bg-background px-2 text-muted-foreground">Ou continuer avec</span>
                                 </div>
                             </div>
-
-                            <div className="grid grid-cols-2 gap-4">
+             
                                 <div className="grid gap-2">
                                     <Button type="button" variant="outline" className="w-full"><FcGoogle size={18} className="mr-1" />Google</Button>
-                                </div>
-
-                                <div className="grid gap-2">
-                                    <Button type="button" variant="outline" className="w-full"><FaGithub size={18} className="mr-1" />GitHub</Button>
-                                </div>
-                            </div>
+                                </div>                
                         </div>
                     </form>
                 </Form>
