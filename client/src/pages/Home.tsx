@@ -1,5 +1,6 @@
-import Navbar from "../components/NavbarHome"
+import { Link } from "react-router-dom"
 import logo from '../assets/images/logo.png'
+import Navbar from "../components/NavbarHome"
 import { Button } from "../components/ui/button"
 
 
@@ -31,7 +32,9 @@ export default function Home() {
                     </p>
                     <div className="mt-6 flex justify-center gap-4">
                         <Button className="bg-cyan-700">Accèdez maintenant</Button>
-                        <Button variant="outline">Créer un compte</Button>
+                        <Link to="/register">
+                            <Button variant="outline">Créer un compte</Button>
+                        </Link>
                     </div>
                 </div>
             </div>
