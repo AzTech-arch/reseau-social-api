@@ -2,7 +2,6 @@ import { z } from "zod"
 import { useState } from "react"
 import { Button } from "./ui/button"
 import { Link } from "react-router-dom"
-import { FcGoogle } from "react-icons/fc"
 import { Eye, EyeOff } from "lucide-react"
 import { Input } from "../components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -12,8 +11,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 
 // Définir le schéma de validation avec Zod
 const formSchema = z.object({
-    lastname: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères" }),
-    firstname: z.string().min(2, { message: "Le prénom doit contenir au moins 2 caractères" }),
     email: z.string().email({ message: "Adresse e-mail invalide" }),
     password: z.string().min(8, { message: "Le mot de passe doit contenir au moins 8 caractères" })
 })
@@ -21,16 +18,15 @@ const formSchema = z.object({
 // Définir les types des données du formulaire
 type FormSchemaType = z.infer<typeof formSchema>
 
-export default function RegisterForm() {
+
+export default function LoginForm() {
     /**
-    * ! STATE (état, données) de l'application
-    */
+     * ! STATE (état, données) de l'application
+     */
     const [showPassword, setShowPassword] = useState(false);
     const form = useForm<FormSchemaType>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            lastname: "",
-            firstname: "",
             email: "",
             password: ""
         }
@@ -42,8 +38,6 @@ export default function RegisterForm() {
     const handleRegister: SubmitHandler<FormSchemaType> = async (data) => {
         // Données à envoyer pour l'inscription
         const dataRegister = {
-            lastname: data.lastname,
-            firstname: data.firstname,
             email: data.email,
             password: data.password
         }
@@ -55,58 +49,23 @@ export default function RegisterForm() {
             console.error(error)
         }
     };
+
     /**
      * ! AFFICHAGE (render) de l'application
      */
     return (
         <>
-
             <div className="p-8 max-w-lg w-full">
-                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-4xl mb-4 font-serif">Créer un compte</h1>
+                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-4xl mb-4 font-serif">Connexion</h1>
                 <p className="mb-4 text-md text-muted-foreground text-black">
                     Faites partie de la communauté FriendZy, où vous pourrez rencontrer et discuter avec de nouveaux amis et partager des intérêts communs !
                 </p>
                 <p className="mb-4 text-sm text-muted-foreground">
-                    Vous avez déjà un compte ? Accédez-y en cliquant <Link to="/login" className="underline text-cyan-700">ici</Link>
+                    Vous n'avez pas de compte ? Inscrivez-vous en cliquant <Link to="/register" className="underline text-cyan-700">ici</Link>
                 </p>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(handleRegister)}>
                         <div className="grid gap-4">
-                            <div className="grid grid-cols-2 gap-4">
-
-                                <div className="grid gap-2">
-                                    <FormField
-                                        control={form.control}
-                                        name="lastname"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Nom</FormLabel>
-                                                <FormControl>
-                                                    <Input {...field} placeholder="ABDILLAH" className="shadow-sm" />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-
-                                <div className="grid gap-2">
-                                    <FormField
-                                        control={form.control}
-                                        name="firstname"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>Prénom</FormLabel>
-                                                <FormControl>
-                                                    <Input {...field} placeholder="Cousema Anjary" className="shadow-sm"  />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-                            </div>
-
                             <div className="grid gap-2">
                                 <FormField
                                     control={form.control}
@@ -146,26 +105,12 @@ export default function RegisterForm() {
                                     </Button>
                                 </div>
                             </div>
-                            <Button type="submit" className="w-full bg-cyan-700">S'inscrire</Button>
-
-                            <div className="relative">
-                                <div className="absolute inset-0 flex items-center">
-                                    <span className="w-full border-t"></span>
-                                </div>
-                                <div className="relative flex justify-center text-xs uppercase ">
-                                    <span className="bg-background px-2 text-muted-foreground">Ou continuer avec</span>
-                                </div>
-                            </div>
-             
-                                <div className="grid gap-2">
-                                    <Button type="button" variant="outline" className="w-full"><FcGoogle size={18} className="mr-1" />Google</Button>
-                                </div>                
+                            <Button type="submit" className="w-full bg-cyan-700">Authentifier</Button>
                         </div>
                     </form>
                 </Form>
 
             </div>
-
         </>
     )
 }

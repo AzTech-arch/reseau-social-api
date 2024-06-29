@@ -67,11 +67,11 @@ export default function NavbarHome() {
                                 </DropdownMenuGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
-                        <a href="">
+                        <Link to="/login">
                             <Button variant="ghost" className="flex items-center gap-1">
                                 <User size={18} className="mr-1" /> Connexion
                             </Button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

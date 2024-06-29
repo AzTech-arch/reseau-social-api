@@ -31,7 +31,10 @@ export default function Home() {
                         Rejoignez notre communauté pour rencontrer de nouvelles personnes, partager des moments et explorer des intérêts communs.
                     </p>
                     <div className="mt-6 flex justify-center gap-4">
-                        <Button className="bg-cyan-700">Accèdez maintenant</Button>
+                        <Link to="/login">
+                            <Button className="bg-cyan-700">Accèdez maintenant</Button>
+                        </Link>
+
                         <Link to="/register">
                             <Button variant="outline">Créer un compte</Button>
                         </Link>
