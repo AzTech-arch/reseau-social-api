@@ -1,4 +1,4 @@
-
+import logo from '../assets/images/logo.png'
 import { Input } from "../components/ui/input"
 import { Link } from 'react-router-dom'
 import { Avatar, AvatarImage, AvatarFallback } from "../components/ui/avatar"
@@ -7,11 +7,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 
 const Navbar = () => {
     return (
-        <nav className="bg-gray-800 p-4 shadow-md  sticky top-0 z-50">
-            <div className="container mx-auto flex justify-between items-center">
+        <nav className="bg-white p-4 shadow relative">
+            <div className=" container-fluid mx-20 flex justify-between items-center">
                 {/* Logo and Search */}
                 <div className="flex items-center space-x-4">
-                    <Link to="/admin/dashboard" className="text-2xl font-bold font-serif text-white">Friendzy</Link>
+                    <img src={logo} alt="logo" className="w-24 h-auto object-contain" />
                     <div className="relative">
                         <Input
                             type="text"
