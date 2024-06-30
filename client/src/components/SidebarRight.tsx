@@ -5,7 +5,7 @@ const SidebarRight = () => {
         <div className="fixed right-0 w-64 h-full bg-white text-gray-200 shadow rounded ">
             <div className="p-4">
                 <div className="flex justify-between items-center mb-4">
-                    <h4 className="scroll-m-20 text-xl font-bold tracking-tight text-black">Invitations</h4>
+                    <h4 className="scroll-m-20 text-xl font-bold tracking-tight text-black font">Invitations</h4>
                     <Button variant="ghost" className="text-cyan-700 text-sm">Voir tout</Button>
                 </div>
 
