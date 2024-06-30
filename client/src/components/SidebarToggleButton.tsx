@@ -1,7 +1,13 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from "./ui/button";
+import { FC } from 'react';
 
-const SidebarToggle = ({ isOpen, toggleSidebar }) => {
+interface SidebarToggleProps {
+    isOpen: boolean
+    toggleSidebar: () => void
+}
+
+const SidebarToggleButton: FC<SidebarToggleProps> = ({ isOpen, toggleSidebar }) => {
     return (
         <Button
             variant="outline"
@@ -18,4 +24,4 @@ const SidebarToggle = ({ isOpen, toggleSidebar }) => {
     );
 };
 
-export default SidebarToggle;
+export default SidebarToggleButton

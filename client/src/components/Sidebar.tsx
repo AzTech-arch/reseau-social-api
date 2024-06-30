@@ -1,11 +1,18 @@
+import { FC } from "react";
 import { Button } from "./ui/button";
 import { LiaUserFriendsSolid } from "react-icons/lia";
 import { BsPostcardHeart } from "react-icons/bs";
-import { HiOutlineDotsHorizontal } from "react-icons/hi"; // Importer l'icône
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
-import SidebarToggle from "./SidebarToggle"; // Importer le nouveau composant
+import SidebarToggleButton from "./SidebarToggleButton";
 
-const Sidebar = ({ isOpen, toggleSidebar }) => {
+interface SidebarProps {
+    isOpen: boolean // boolean pour savoir si le sidebar est ouvert ou non
+    toggleSidebar: () => void // fonction pour basculer le sidebar
+
+}
+
+const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     return (
         <div className={`fixed left-0 h-full bg-white text-gray-200 shadow-md transition-all duration-300 ${isOpen ? 'w-64' : 'w'}`}>
             <div className="flex flex-col flex-grow p-4">
@@ -17,7 +24,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                         </Avatar>
                         {isOpen && <p className="text-sm font-semibold leading-7 text-black">Cousema Anjary</p>}
                     </Button>
-                    <SidebarToggle isOpen={isOpen} toggleSidebar={toggleSidebar} />
+                    <SidebarToggleButton isOpen={isOpen} toggleSidebar={toggleSidebar} />
                 </div>
                 <div className="mt-2">
                     {isOpen ? (
