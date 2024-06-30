@@ -29,8 +29,8 @@ const SidebarRight = () => {
                         <span className="text-xs text-muted-foreground mb-5">1 j</span>
                     </div>
                     <div className="flex mt-2 space-x-2 ms-10">
-                        <Button className="bg-cyan-700 font-normal text-sm py-1">Confirmer</Button>
-                        <Button variant="outline" className="text-black font-normal text-sm">Refuser</Button>
+                        <Button size="sm" className="bg-cyan-700 font-normal text-sm py-1">Confirmer</Button>
+                        <Button size="sm" variant="outline" className="text-black font-normal text-sm">Refuser</Button>
                     </div>
                 </div>
 
