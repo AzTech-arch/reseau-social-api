@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom'
 import { Avatar, AvatarImage, AvatarFallback } from "../components/ui/avatar"
 import { LogOut, Settings, User, MessageSquareMore, Search, Bell } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu"
+import { Button } from './ui/button'
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "../components/ui/tooltip";
+
+
+
+
+
 
 const Navbar = () => {
     return (
@@ -38,24 +45,40 @@ const Navbar = () => {
                 {/* User Options */}
                 <div className="flex items-center space-x-4">
 
-                    <Link to="/#" className="relative text-white px-2 py-2">
-                        <MessageSquareMore size={22} />
+                    <Link to="#">
+                        <Button variant="outline" className="p-2 shadow-sm">
+                            <MessageSquareMore size={18} />
+                        </Button>
                     </Link>
 
-                    <Link to="/#" className="relative text-white px-2 py-2">
-                        <Bell size={22} />
-                        {/* <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1">1</span> */}
+                    <Link to="#">
+                        <Button variant="outline" className="p-2 shadow-sm">
+                            <Bell size={18} />
+                            {/* <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1">1</span> */}
+                        </Button>
                     </Link>
 
                     <DropdownMenu>
-                        <DropdownMenuTrigger>
-                            <Avatar>
-                                <AvatarImage src="" />
-                                <AvatarFallback>CN</AvatarFallback>
-                            </Avatar>
-                        </DropdownMenuTrigger>
+                        <TooltipProvider disableHoverableContent>
+                            <Tooltip delayDuration={100}>
 
-                        <DropdownMenuContent className="w-56">
+                                <TooltipTrigger asChild>
+                                    <DropdownMenuTrigger asChild>
+
+                                        <Button variant="outline" className="relative h-10 w-10 rounded-full">
+                                            <Avatar className='h-10 w-10'>
+                                                <AvatarImage src="" alt='avatar' />
+                                                <AvatarFallback className='bg-transparent'>CN</AvatarFallback>
+                                            </Avatar>
+                                        </Button>
+
+                                    </DropdownMenuTrigger>
+                                </TooltipTrigger>
+                            </Tooltip>
+                        </TooltipProvider>
+
+
+                        <DropdownMenuContent className="w-56" align='center' forceMount>
                             <DropdownMenuLabel>Salut👋 Cousema</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuGroup>
