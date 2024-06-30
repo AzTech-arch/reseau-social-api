@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar"
 
 const SidebarRight = () => {
     return (
-        <div className="fixed right-0 w-64 h-full bg-white text-gray-200 shadow rounded ">
+        <div className="fixed right-0 w-64 h-full bg-white text-gray-200 shadow-md rounded ">
             <div className="p-4">
                 <div className="flex justify-between items-center mb-4">
                     <h4 className="scroll-m-20 text-xl font-semibold tracking-tight text-black leading-7">Invitations</h4>

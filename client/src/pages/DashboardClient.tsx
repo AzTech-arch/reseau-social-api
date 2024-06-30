@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar"
 import SidebarRight from "../components/SidebarRight"
-// import Sidebar from "../components/Sidebar"
+ import Sidebar from "../components/Sidebar"
 
 
 export default function DashboardClient() {
@@ -39,13 +39,13 @@ export default function DashboardClient() {
            <div className="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,160,255,0.08)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
             <Navbar />
             <div className="flex flex-1 mt-10 h-full">
-                {/* <div className="flex-shrink-0 w-64 mr-4">
+                 <div className="flex-shrink-0 w-64 mr-4">
                     <Sidebar />
-                </div> */}
+                </div> 
 
                 <main className="flex-grow bg-slate-300 mx-4">
                     {/* Contenu principal */}
-                    
+                    c
                 </main>
 
                 <div className="flex-shrink-0 w-64 ml-4">
