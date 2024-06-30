@@ -1,10 +1,12 @@
+import { Button } from "./ui/button";
+
 const SidebarRight = () => {
     return (
-        <div className="fixed right-0 w-64 h-full bg-gray-800 text-gray-200 ">
+        <div className="fixed right-0 w-64 h-full bg-white text-gray-200 shadow rounded ">
             <div className="p-4">
                 <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-lg font-semibold">Invitations</h2>
-                    <a href="#" className="text-blue-400 text-sm">Voir tout</a>
+                    <h4 className="scroll-m-20 text-xl font-bold tracking-tight text-black">Invitations</h4>
+                    <Button variant="ghost" className="text-cyan-700 text-sm">Voir tout</Button>
                 </div>
 
                 <div className="mt-4 mb-4">
@@ -24,7 +26,7 @@ const SidebarRight = () => {
                     </div>
                 </div>
 
-                <h2 className="text-lg font-semibold">Contacts</h2>
+                <h4 className="scroll-m-20 text-xl font-bold tracking-tight text-black">Contacts</h4>
                 <div className="mt-4 space-y-2 ms-2">
                     {["Ericson Léon Toussaint", "Jacqueline Abdillah", "Koureiche Aly", "Rahim Fayasee J-w"].map((contact, index) => (
                         <div key={index} className="flex items-center space-x-2">
