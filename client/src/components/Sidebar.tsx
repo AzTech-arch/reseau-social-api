@@ -1,7 +1,7 @@
 
 const Sidebar = () => {
     return (
-        <div className="fixed top-16 left-0 w-64 h-full bg-gray-800 text-gray-200">
+        <div className="fixed  left-0 w-64 h-full bg-gray-800 text-gray-200">
             <div className="flex flex-col flex-grow p-4">
                 <a className="flex items-center p-2 mt-2 text-gray-400 rounded hover:bg-gray-700 hover:text-white" href="#">
                     <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

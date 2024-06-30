@@ -21,11 +21,17 @@ export default function DashboardClient() {
         <div className="bg-gray-200 min-h-screen flex flex-col">
             <Navbar />
             <div className="flex flex-1 mt-10 h-full">
-                {/* <Sidebar /> */}
-                <main className=" bg-slate-300 container mx-auto">
+                {/* <div className="flex-shrink-0 w-64 mr-4">
+                    <Sidebar />
+                </div> */}
 
+                <main className="flex-grow bg-slate-300 mx-4">
+                    {/* Contenu principal */}
                 </main>
-                <SidebarRight />
+
+                <div className="flex-shrink-0 w-64 ml-4">
+                    <SidebarRight />
+                </div>
             </div>
         </div>
     )
