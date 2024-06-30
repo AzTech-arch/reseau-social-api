@@ -25,9 +25,8 @@ export default function DashboardClient() {
                 </div>
 
                 {/* Main Content */}
-                <main className={`flex-grow bg-slate-300 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'} p-4`}>
+                <main className={`flex-grow bg-slate-300 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'} `}>
                     {/* Contenu principal */}
-                    c
                 </main>
 
                 {/* Right Sidebar */}
