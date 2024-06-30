@@ -5,7 +5,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "../components/ui/avatar"
 import { LogOut, Settings, User, MessageSquareMore, Search, Bell } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu"
 import { Button } from './ui/button'
-import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "../components/ui/tooltip";
+import { Tooltip, TooltipTrigger, TooltipProvider } from "../components/ui/tooltip";
 
 
 
@@ -20,11 +20,7 @@ const Navbar = () => {
                 <div className="flex items-center space-x-4">
                     <img src={logo} alt="logo" className="w-24 h-auto object-contain" />
                     <div className="relative">
-                        <Input type="text" placeholder="Rechercher sur Friendzy" className=" bg-white text-slate-400 pl-10 pr-4 py-2 shadow-sm" />
-
-
-
-
+                        <Input type="text" placeholder="Rechercher sur Friendzy" className=" bg-white text-slate-600 pl-10 pr-4 py-2 shadow-sm " />
                         <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
                     </div>
                 </div>
@@ -52,9 +48,9 @@ const Navbar = () => {
                     </Link>
 
                     <Link to="#">
-                        <Button variant="outline" className="p-2 shadow-sm">
+                        <Button variant="outline" className="p-2 shadow-sm relative">
                             <Bell size={18} />
-                            {/* <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1">1</span> */}
+                            {/* <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">1</span> */}
                         </Button>
                     </Link>
 
