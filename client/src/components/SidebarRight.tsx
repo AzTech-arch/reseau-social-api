@@ -35,15 +35,15 @@ const SidebarRight = () => {
                 </div>
 
                 <h4 className="scroll-m-20 text-xl font-semibold tracking-tight text-black leading-7">Contacts</h4>
-                <div className="mt-4 space-y-2 ms-2">
+                <div className="mt-4 space-y-2">
                     {["Ericson Léon Toussaint", "Jacqueline Abdillah", "Koureiche Aly", "Rahim Fayasee J-w"].map((contact, index) => (
-                        <div key={index} className="flex items-center space-x-2">
+                        <Button key={index} variant="ghost" className="flex items-center space-x-2 w-full justify-start p-2 py-6">
                             <Avatar className="w-8 h-8 shadow">
                                 <AvatarImage src="" alt="@shadcn" />
                                 <AvatarFallback>CN</AvatarFallback>
                             </Avatar>
                             <p className="text-sm font-medium leading-7 text-black">{contact}</p>
-                        </div>
+                        </Button>
                     ))}
                 </div>
             </div>
