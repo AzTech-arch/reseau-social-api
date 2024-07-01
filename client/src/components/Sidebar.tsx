@@ -12,7 +12,11 @@ interface SidebarProps {
 
 }
 
+
+
 const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
+
+
     return (
         <div className={`fixed left-0 h-full bg-white text-gray-200 shadow-md transition-all duration-300 ${isOpen ? 'w-64' : 'w'}`}>
             <div className="flex flex-col flex-grow p-4">
