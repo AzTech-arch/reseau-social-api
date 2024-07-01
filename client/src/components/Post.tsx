@@ -1,7 +1,8 @@
 import { Card, CardContent, CardFooter } from "../components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 import { Button } from "../components/ui/button";
-import { BsHeart, BsChat, BsShare, BsSend } from "react-icons/bs";
+import { BsHeart, BsChat, BsShare } from "react-icons/bs";
+import { FaHeart } from "react-icons/fa";
 import { MoreHorizontal } from "lucide-react";
 
 const Post = () => {
@@ -19,7 +20,9 @@ const Post = () => {
                     </div>
                 </div>
                 <div className="flex items-center space-x-2">
-                    <MoreHorizontal className="w-5 h-5 text-gray-400" />
+                    <Button variant="ghost">
+                        <MoreHorizontal className="w-5 h-5  text-black" />
+                    </Button>
                 </div>
             </div>
 
@@ -27,32 +30,29 @@ const Post = () => {
                 <p className="text-base text-muted-foreground mb-3">
                     Experience the future of achievement with digital credentialing! As this field skyrockets, the ease of issuing, sharing, and verifying credentials has never been more crucial...
                 </p>
-                <img src="https://via.placeholder.com/500x300" alt="Post" className="w-full rounded-lg mb-2" />
+                <img src="https://via.placeholder.com/500x300" alt="Post" className="w-full rounded-lg" />
             </CardContent>
-            <CardFooter className="flex justify-between items-center border-t p-4">
+
+            <div className="flex justify-between items-center px-4 mb-2">
                 <div className="flex items-center space-x-2 text-sm text-gray-500">
-                    <img src="https://via.placeholder.com/20" alt="Like" className="w-5 h-5" />
-                    <img src="https://via.placeholder.com/20" alt="Heart" className="w-5 h-5" />
+                    <FaHeart className="w-5 h-5 text-cyan-700" />
                     <p>187</p>
-                    <p className="ml-2">· 1 commentaire · 3 republications</p>
                 </div>
-            </CardFooter>
-            <CardFooter className="flex justify-around items-center border-t pt-2 p-4">
-                <Button variant="ghost" className="flex items-center space-x-2">
+                <p className="ml-2"> 1 commentaire</p>
+            </div>
+
+            <CardFooter className="flex justify-between items-center border-t pt-3 pb-0">
+                <Button variant="ghost" className="flex items-center space-x-2 w-full">
                     <BsHeart className="w-5 h-5" />
                     <p>J'aime</p>
                 </Button>
-                <Button variant="ghost" className="flex items-center space-x-2">
+                <Button variant="ghost" className="flex items-center space-x-2 w-full">
                     <BsChat className="w-5 h-5" />
                     <p>Commenter</p>
                 </Button>
-                <Button variant="ghost" className="flex items-center space-x-2">
+                <Button variant="ghost" className="flex items-center space-x-2 w-full">
                     <BsShare className="w-5 h-5" />
                     <p>Republier</p>
-                </Button>
-                <Button variant="ghost" className="flex items-center space-x-2">
-                    <BsSend className="w-5 h-5" />
-                    <p>Envoyer</p>
                 </Button>
             </CardFooter>
         </Card>
