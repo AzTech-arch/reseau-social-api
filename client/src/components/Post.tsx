@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 import { Button } from "../components/ui/button";
 import { BsHeart, BsChat, BsShare } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
-import { MoreHorizontal, Heart, MessageCircle } from "lucide-react";
+import { MoreHorizontal, Heart} from "lucide-react";
 import { Textarea } from "../components/ui/textarea";
 
 const Post = () => {
@@ -18,6 +18,7 @@ const Post = () => {
     return (
         <Card className="mb-4 max-w-full p-4 shadow">
             <div className="flex items-start justify-between p-4">
+
                 <div className="flex items-center space-x-4">
                     <Avatar className="w-10 h-10 shadow">
                         <AvatarImage src="" alt="Company Logo" />
@@ -28,6 +29,7 @@ const Post = () => {
                         <p className="text-xs text-gray-500">4 h · <span className="inline-block"><svg xmlns="http://www.w3.org/2000/svg" className="inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg></span></p>
                     </div>
                 </div>
+
                 <div className="flex items-center space-x-2">
                     <Button variant="ghost">
                         <MoreHorizontal className="w-5 h-5 text-black" />
@@ -71,11 +73,11 @@ const Post = () => {
                         <div className="flex items-center space-x-2">
                             <Avatar className="shadow">
                                 <AvatarImage className="w-8 h-8 rounded-full" src="" />
-                                <AvatarFallback>U</AvatarFallback>
+                                <AvatarFallback>UA</AvatarFallback>
                             </Avatar>
 
                             <div className="flex items-center">
-                                <span className="font-semibold mr-2">Cousema Anjary</span>
+                                <span className="text-sm font-semibold leading-7 text-black mr-2">Cousema Anjary</span>
                                 <span className="text-gray-500 text-sm">55 min</span>
                             </div>
                         </div>
