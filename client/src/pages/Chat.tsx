@@ -3,6 +3,7 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import SidebarRight from "../components/SidebarRight";
+import { ChatLayout } from "../components/chat/ChatLayout";
 
 export default function Chat() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -27,7 +28,7 @@ export default function Chat() {
                 {/* Main Content */}
                 <main className={`flex-grow  transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'}`}>
                     {/* Contenu principal */}
-                  
+                    <ChatLayout />
                 </main>
 
                 {/* Right Sidebar */}
