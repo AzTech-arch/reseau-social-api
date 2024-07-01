@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import ChatBottombar from "./ChatBottombar";
 import { AnimatePresence, motion } from "framer-motion";
@@ -21,7 +21,7 @@ interface ChatListProps {
 export const ChatList: React.FC<ChatListProps> = ({ messages, selectedUser, sendMessage, isMobile }) => {
     const messagesContainerRef = useRef<HTMLDivElement>(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (messagesContainerRef.current) {
             messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
         }

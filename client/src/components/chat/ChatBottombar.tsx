@@ -5,11 +5,7 @@ import { cn } from "../../lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Textarea } from "../ui/textarea";
 import { EmojiPicker } from "../chat/EmojiPicker";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "../ui/popover"
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 interface ChatBottombarProps {
   sendMessage: (newMessage: { id: number; name: string; avatar: string; message: string; }) => void;
@@ -29,7 +25,7 @@ export const ChatBottombar: React.FC<ChatBottombarProps> = ({ sendMessage, isMob
   const handleThumbsUp = () => {
     const newMessage = {
       id: message.length + 1,
-      name: "Jakob Hoeg",
+      name: "You",
       avatar: "/LoggedInUser.jpg",
       message: "👍",
     };
@@ -41,7 +37,7 @@ export const ChatBottombar: React.FC<ChatBottombarProps> = ({ sendMessage, isMob
     if (message.trim()) {
       const newMessage = {
         id: message.length + 1,
-        name: "Jakob Hoeg",
+        name: "You",
         avatar: "/LoggedInUser.jpg",
         message: message.trim(),
       };

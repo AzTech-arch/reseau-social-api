@@ -28,7 +28,9 @@ export default function Chat() {
                 {/* Main Content */}
                 <main className={`flex-grow  transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'}`}>
                     {/* Contenu principal */}
-                    <ChatLayout />
+        
+                    <ChatLayout  />
+
                 </main>
 
                 {/* Right Sidebar */}

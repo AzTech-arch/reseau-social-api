@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-    ResizableHandle,
-    ResizablePanel,
-    ResizablePanelGroup,
-} from "../ui/resizable";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../ui/resizable";
 import { cn } from "../../lib/utils";
-import Sidebar from "./SidebarChat";
+import SidebarChat from "./SidebarChat";
 import Chat from "./Chat";
 
 interface ChatLayoutProps {
-    defaultLayout: number[] | undefined;
+    defaultLayout?: number[];
     defaultCollapsed?: boolean;
-    navCollapsedSize: number;
+    navCollapsedSize?: number;
 }
 
 const userData = [
@@ -22,18 +18,36 @@ const userData = [
         messages: [
             { id: 1, avatar: '/User1.png', name: 'Jane Doe', message: 'Hey, how are you?' },
             { id: 2, avatar: '/LoggedInUser.jpg', name: 'You', message: 'I am good, thanks!' },
+            { id: 3, avatar: '/User1.png', name: 'Jane Doe', message: 'That is great!' },
         ],
     },
-    // Other users...
+    {
+        id: 2,
+        avatar: '/User2.png',
+        name: 'John Doe',
+        messages: [],
+    },
+    {
+        id: 3,
+        avatar: '/User3.png',
+        name: 'Elizabeth Smith',
+        messages: [],
+    },
+    {
+        id: 4,
+        avatar: '/User4.png',
+        name: 'John Smith',
+        messages: [],
+    }
 ];
 
 export const ChatLayout: React.FC<ChatLayoutProps> = ({
     defaultLayout = [320, 480],
     defaultCollapsed = false,
-    navCollapsedSize,
+    navCollapsedSize = 8,
 }) => {
-    const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
-    const [selectedUser, setSelectedUser] = React.useState(userData[0]);
+    const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
+    const [selectedUser, setSelectedUser] = useState(userData[0]);
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -75,9 +89,12 @@ export const ChatLayout: React.FC<ChatLayoutProps> = ({
                     isCollapsed && "min-w-[50px] md:min-w-[70px] transition-all duration-300 ease-in-out"
                 )}
             >
-                <Sidebar
+                <SidebarChat
                     isCollapsed={isCollapsed || isMobile}
                     isMobile={isMobile}
+                    users={userData}
+                    onSelectUser={setSelectedUser}
+                    selectedUser={selectedUser}
                 />
             </ResizablePanel>
             <ResizableHandle withHandle />
@@ -90,6 +107,6 @@ export const ChatLayout: React.FC<ChatLayoutProps> = ({
             </ResizablePanel>
         </ResizablePanelGroup>
     );
-}
+};
 
 export default ChatLayout;

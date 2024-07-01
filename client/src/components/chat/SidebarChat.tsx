@@ -9,44 +9,22 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/
 interface SidebarProps {
     isCollapsed: boolean;
     isMobile: boolean;
+    users: {
+        id: number;
+        avatar: string;
+        name: string;
+        messages: { id: number; avatar: string; name: string; message: string }[];
+    }[];
+    onSelectUser: (user: any) => void;
+    selectedUser: any;
 }
 
-const userData = [
-    {
-        id: 1,
-        avatar: '/User1.png',
-        name: 'Jane Doe',
-        messages: [
-            { id: 1, avatar: '/User1.png', name: 'Jane Doe', message: 'Hey, how are you?' },
-            { id: 2, avatar: '/LoggedInUser.jpg', name: 'You', message: 'I am good, thanks!' },
-        ],
-    },
-    {
-        id: 2,
-        avatar: '/User2.png',
-        name: 'John Doe',
-        messages: [],
-    },
-    {
-        id: 3,
-        avatar: '/User3.png',
-        name: 'Elizabeth Smith',
-        messages: [],
-    },
-    {
-        id: 4,
-        avatar: '/User4.png',
-        name: 'John Smith',
-        messages: [],
-    }
-];
-
-export const SidebarChat: React.FC<SidebarProps> = ({ isCollapsed }) => {
-    const links = userData.map(user => ({
+export const SidebarChat: React.FC<SidebarProps> = ({ isCollapsed,  users, onSelectUser, selectedUser }) => {
+    const links = users.map(user => ({
         name: user.name,
         messages: user.messages,
         avatar: user.avatar,
-        variant: "ghost" as "ghost",
+        variant: selectedUser.id === user.id ? "ghost" : "ghost", // Adjust variant as necessary
     }));
 
     return (
@@ -85,7 +63,7 @@ export const SidebarChat: React.FC<SidebarProps> = ({ isCollapsed }) => {
                             </Tooltip>
                         </TooltipProvider>
                     ) : (
-                        <Link key={index} to="#" className={cn(buttonVariants({ variant: link.variant }), "justify-start gap-4 h-12")}>
+                        <Link key={index} to="#" className={cn(buttonVariants({ variant: link.variant }), "justify-start gap-4 h-12")} onClick={() => onSelectUser(users[index])}>
                             <Avatar className="flex justify-center items-center">
                                 <AvatarImage src={link.avatar} alt={link.avatar} width={6} height={6} className="w-10 h-10" />
                             </Avatar>
