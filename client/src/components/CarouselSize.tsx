@@ -1,12 +1,6 @@
-import * as React from "react";
+
 import { Card, CardContent } from "../components/ui/card";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "../components/ui/carousel";
+import { Carousel,CarouselContent, CarouselItem, CarouselNext, CarouselPrevious,} from "../components/ui/carousel";
 import Story from "./Story";
 
 const stories = [
@@ -19,27 +13,21 @@ const stories = [
 
 export function CarouselSize() {
     return (
-        <Carousel
-            opts={{
-                align: "start",
-            }}
-            className="w-full "
-        >
+        <Carousel opts={{ align: "start", }} className="w-full ">
+
             <CarouselContent>
                 {stories.map((story, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                        <div className="p-1">
-                            <Card>
-                                <CardContent className="flex aspect-square items-center justify-center p-6">
-                                    <Story {...story} />
-                                </CardContent>
-                            </Card>
-                        </div>
+                    <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
+                        <Card className="p-0">
+                            <CardContent className="flex aspect-square items-center justify-center px-0 ">
+                                <Story {...story} />
+                            </CardContent>
+                        </Card>
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="ms-14" />
+            <CarouselNext className="me-14" />
         </Carousel>
     );
 }
