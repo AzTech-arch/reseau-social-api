@@ -16,16 +16,15 @@ export default function DashboardClient() {
 
 
     return (
-        <div className="relative min-h-screen w-full  ">
+        <div className="relative min-h-screen w-full">
             {/* Background Gradient */}
-            <div className="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,160,255,0.08)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
-
-            {/* Navbar */}
+            <div className="absolute bg-fixed inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            
             <Navbar />
 
-            <div className="flex flex-1 mt-10 h-full">
+            <div className="flex flex-1 mt-10 h-full overflow-x-hidden">
                 {/* Left Sidebar */}
-                <div className={`transition-all duration-700 ${isSidebarOpen ? 'mr-10' : 'mr-10'}`}>
+                <div className={`transition-all duration-700 ${isSidebarOpen ? 'mr-20' : 'mr-20'}`}>
                     <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
                 </div>
 
@@ -35,15 +34,12 @@ export default function DashboardClient() {
                     <div className="flex space-x-2 mb-4">
                         <StoryCarousel />
                     </div>
-                  
                         <CreatePost />
                         <Post />
-                    
-
                 </main>
 
                 {/* Right Sidebar */}
-                <div className="flex-shrink-0 w-64 ml-10">
+                <div className="flex-shrink-0 w-64 ml-20">
                     <SidebarRight />
                 </div>
             </div>

@@ -15,7 +15,7 @@ import { Tooltip, TooltipTrigger, TooltipProvider } from "../components/ui/toolt
 const Navbar = () => {
     return (
         <nav className="bg-white p-4 shadow sticky top-0 z-50">
-            <div className="container-fluid mx-20 flex justify-between items-center">
+            <div className="container-fluid mx-20    flex justify-between items-center">
                 {/* Logo and Search */}
                 <div className="flex items-center space-x-4">
                     <img src={logo} alt="logo" className="w-24 h-auto object-contain" />
