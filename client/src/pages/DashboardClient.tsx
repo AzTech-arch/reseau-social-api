@@ -1,9 +1,12 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
-import SidebarRight from "../components/SidebarRight";
-import Sidebar from "../components/Sidebar";
 import CreatePost from "../components/CreatePost";
-import { CarouselSize } from "../components/CarouselSize";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
+import SidebarRight from "../components/SidebarRight";
+import { StoryCarousel } from "../components/StoryCarousel";
+import Post from "../components/Post";
+
+
 export default function DashboardClient() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
@@ -11,10 +14,9 @@ export default function DashboardClient() {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
-  
 
     return (
-        <div className="relative min-h-screen w-full">
+        <div className="relative min-h-screen w-full  ">
             {/* Background Gradient */}
             <div className="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,160,255,0.08)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
 
@@ -31,9 +33,13 @@ export default function DashboardClient() {
                 <main className={`flex-grow  transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'}`}>
                     {/* Contenu principal */}
                     <div className="flex space-x-2 mb-4">
-                        <CarouselSize />
+                        <StoryCarousel />
                     </div>
-                    <CreatePost />
+                  
+                        <CreatePost />
+                        <Post />
+                    
+
                 </main>
 
                 {/* Right Sidebar */}
