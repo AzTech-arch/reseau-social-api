@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import SidebarRight from "../components/SidebarRight";
 import Sidebar from "../components/Sidebar";
+import CreatePost from "../components/CreatePost";
 
 export default function DashboardClient() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -25,8 +26,9 @@ export default function DashboardClient() {
                 </div>
 
                 {/* Main Content */}
-                <main className={`flex-grow bg-slate-300 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'} p-3`}>
+                <main className={`flex-grow  transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'}`}>
                     {/* Contenu principal */}
+                    <CreatePost />
                 </main>
 
                 {/* Right Sidebar */}

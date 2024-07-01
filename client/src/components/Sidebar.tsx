@@ -9,7 +9,6 @@ import SidebarToggleButton from "./SidebarToggleButton";
 interface SidebarProps {
     isOpen: boolean // boolean pour savoir si le sidebar est ouvert ou non
     toggleSidebar: () => void // fonction pour basculer le sidebar
-
 }
 
 
