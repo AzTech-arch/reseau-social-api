@@ -6,7 +6,7 @@ const CreatePost = () => {
     return (
         <div className="bg-white p-4 rounded-lg shadow mb-4">
             <div className="flex items-center space-x-4">
-                <Avatar>
+                <Avatar className="w-10 h-10 shadow">
                     <AvatarImage src="" alt="User Avatar" />
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
@@ -15,7 +15,7 @@ const CreatePost = () => {
                     type="text"
                     placeholder={`Quoi de neuf, cousema Anjary ?`}
                     className="bg-gray-100 rounded-full cursor-pointer"
-                
+
                     readOnly
                 />
             </div>

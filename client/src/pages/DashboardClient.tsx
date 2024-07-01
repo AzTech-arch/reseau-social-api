@@ -3,13 +3,15 @@ import Navbar from "../components/Navbar";
 import SidebarRight from "../components/SidebarRight";
 import Sidebar from "../components/Sidebar";
 import CreatePost from "../components/CreatePost";
-
+import { CarouselSize } from "../components/CarouselSize";
 export default function DashboardClient() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
+
+  
 
     return (
         <div className="relative min-h-screen w-full">
@@ -28,6 +30,9 @@ export default function DashboardClient() {
                 {/* Main Content */}
                 <main className={`flex-grow  transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'}`}>
                     {/* Contenu principal */}
+                    <div className="flex space-x-2 mb-4">
+                        <CarouselSize />
+                    </div>
                     <CreatePost />
                 </main>
 
