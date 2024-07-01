@@ -4,7 +4,7 @@ import { Input } from "../components/ui/input"
 
 const CreatePost = () => {
     return (
-        <div className="bg-white p-4 rounded-lg shadow-md mb-4">
+        <div className="bg-white p-4 rounded-lg shadow mb-4">
             <div className="flex items-center space-x-4">
                 <Avatar>
                     <AvatarImage src="" alt="User Avatar" />
@@ -13,7 +13,7 @@ const CreatePost = () => {
 
                 <Input
                     type="text"
-                    placeholder={`Quoi de neuf, cousema ?`}
+                    placeholder={`Quoi de neuf, cousema Anjary ?`}
                     className="bg-gray-100 rounded-full cursor-pointer"
                 
                     readOnly
