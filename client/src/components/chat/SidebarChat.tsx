@@ -5,19 +5,50 @@ import { cn } from "../../lib/utils";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { buttonVariants } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
-import { Message } from "./data";
 
 interface SidebarProps {
     isCollapsed: boolean;
-    links: {
-        name: string;
-        messages: Message[];
-        avatar: string;
-    }[];
     isMobile: boolean;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ links, isCollapsed }) => {
+const userData = [
+    {
+        id: 1,
+        avatar: '/User1.png',
+        name: 'Jane Doe',
+        messages: [
+            { id: 1, avatar: '/User1.png', name: 'Jane Doe', message: 'Hey, how are you?' },
+            { id: 2, avatar: '/LoggedInUser.jpg', name: 'You', message: 'I am good, thanks!' },
+        ],
+    },
+    {
+        id: 2,
+        avatar: '/User2.png',
+        name: 'John Doe',
+        messages: [],
+    },
+    {
+        id: 3,
+        avatar: '/User3.png',
+        name: 'Elizabeth Smith',
+        messages: [],
+    },
+    {
+        id: 4,
+        avatar: '/User4.png',
+        name: 'John Smith',
+        messages: [],
+    }
+];
+
+export const SidebarChat: React.FC<SidebarProps> = ({ isCollapsed }) => {
+    const links = userData.map(user => ({
+        name: user.name,
+        messages: user.messages,
+        avatar: user.avatar,
+        variant: "ghost" as "ghost",
+    }));
+
     return (
         <div className="relative group flex flex-col h-full gap-4 p-2">
             {!isCollapsed && (
@@ -42,7 +73,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ links, isCollapsed }) => {
                         <TooltipProvider key={index}>
                             <Tooltip key={index} delayDuration={0}>
                                 <TooltipTrigger asChild>
-                                    <Link to="#" >
+                                    <Link to="#" className={cn(buttonVariants({ variant: link.variant, size: "icon" }), "h-11 w-11 md:h-16 md:w-16")}>
                                         <Avatar className="flex justify-center items-center">
                                             <AvatarImage src={link.avatar} alt={link.avatar} width={6} height={6} className="w-10 h-10" />
                                         </Avatar>
@@ -54,7 +85,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ links, isCollapsed }) => {
                             </Tooltip>
                         </TooltipProvider>
                     ) : (
-                        <Link key={index} to="#" >
+                        <Link key={index} to="#" className={cn(buttonVariants({ variant: link.variant }), "justify-start gap-4 h-12")}>
                             <Avatar className="flex justify-center items-center">
                                 <AvatarImage src={link.avatar} alt={link.avatar} width={6} height={6} className="w-10 h-10" />
                             </Avatar>
@@ -73,3 +104,5 @@ export const Sidebar: React.FC<SidebarProps> = ({ links, isCollapsed }) => {
         </div>
     );
 };
+
+export default SidebarChat;
