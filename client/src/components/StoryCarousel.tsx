@@ -7,7 +7,7 @@ const stories = [
     { imageSrc: "https://via.placeholder.com/100x150", name: "Créer une story", isCreateStory: true },
     { imageSrc: "https://via.placeholder.com/100x150", profileImage: "https://via.placeholder.com/40", name: "Theodule Cacao Choco" },
     { imageSrc: "https://via.placeholder.com/100x150", profileImage: "https://via.placeholder.com/40", name: "Nirina Glène Kassamaly" },
-    { imageSrc: "https://via.placeholder.com/100x150", profileImage: "https://via.placeholder.com/40", name: "Kéycha Lfrg" },
+    { imageSrc: "https://via.placeholder.com/100x150", profileImage: "https://via.placeholder.com/40", name: "Aicha Mounichca" },
     { imageSrc: "https://via.placeholder.com/100x150", profileImage: "https://via.placeholder.com/40", name: "Hanitriniana" },
 ];
 
