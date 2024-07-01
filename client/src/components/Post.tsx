@@ -6,7 +6,7 @@ import { MoreHorizontal } from "lucide-react";
 
 const Post = () => {
     return (
-        <Card className="mb-4 max-w-full p-4">
+        <Card className="mb-4 max-w-full p-4 shadow">
             <div className="flex items-start justify-between p-4">
                 <div className="flex items-center space-x-4">
                     <Avatar className="w-10 h-10 shadow">
@@ -24,7 +24,7 @@ const Post = () => {
             </div>
 
             <CardContent className="p-4">
-                <p className="text-sm mb-2">
+                <p className="text-base text-muted-foreground mb-3">
                     Experience the future of achievement with digital credentialing! As this field skyrockets, the ease of issuing, sharing, and verifying credentials has never been more crucial...
                 </p>
                 <img src="https://via.placeholder.com/500x300" alt="Post" className="w-full rounded-lg mb-2" />
