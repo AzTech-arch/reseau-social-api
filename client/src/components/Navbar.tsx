@@ -18,7 +18,10 @@ const Navbar = () => {
             <div className="container-fluid mx-20    flex justify-between items-center">
                 {/* Logo and Search */}
                 <div className="flex items-center space-x-4">
-                    <img src={logo} alt="logo" className="w-24 h-auto object-contain" />
+                    <Link to="/friendzy">
+                        <img src={logo} alt="logo" className="w-24 h-auto object-contain" />
+                    </Link>
+
                     <div className="relative">
                         <Input type="text" placeholder="Rechercher sur Friendzy" className=" bg-white text-slate-600 pl-10 pr-4 py-2 shadow-sm " />
                         <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
@@ -41,7 +44,7 @@ const Navbar = () => {
                 {/* User Options */}
                 <div className="flex items-center space-x-4">
 
-                    <Link to="#">
+                    <Link to="/friendzy/chat">
                         <Button variant="outline" className="p-2 shadow-sm">
                             <MessageSquareMore size={18} />
                         </Button>
