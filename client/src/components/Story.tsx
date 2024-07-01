@@ -1,11 +1,16 @@
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar"
 import { Button } from "./ui/button";
 import { Plus } from 'lucide-react';
+import { FC } from "react";
 
 
+interface StoryProps {
+    imageSrc: string;
+    name: string;
+    isCreateStory?: boolean;
+}
 
-
-const Story = ({ imageSrc, name, isCreateStory }) => {
+const Story: FC<StoryProps> = ({ imageSrc, name, isCreateStory }) => {
     return (
         <div className="relative w-full">
             <img src={imageSrc} alt={name} className="w-full h-full rounded-lg  rounded-b-none" />
