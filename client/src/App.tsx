@@ -5,6 +5,7 @@ import Login from "./pages/Login"
 import DashboardClient from "./pages/DashboardClient"
 import ChatClient from "./pages/ChatClient"
 import Profil from "./pages/Profil"
+import InvitationClient from "./pages/InvitationClient"
 
 export default function App() {
   /**
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/friendzy" element={<DashboardClient />} />
         <Route path="/friendzy/chat" element={<ChatClient />} />
         <Route path="/friendzy/profil" element={<Profil />} />
+        <Route path="/friendzy/invitation" element={<InvitationClient />} />
       </Routes>
     </>
   )
