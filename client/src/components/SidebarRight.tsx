@@ -34,7 +34,7 @@ const SidebarRight = () => {
                     </div>
                 </div>
 
-                <h4 className="scroll-m-20 text-xl font-semibold tracking-tight text-black leading-7">Contacts</h4>
+                {/* <h4 className="scroll-m-20 text-xl font-semibold tracking-tight text-black leading-7">Contacts</h4>
                 <div className="mt-4 space-y-2">
                     {["Ericson Léon Toussaint", "Jacqueline Abdillah", "Koureiche Aly", "Rahim Fayasee J-w"].map((contact, index) => (
                         <Button key={index} variant="ghost" className="flex items-center space-x-2 w-full justify-start p-2 py-6">
@@ -45,7 +45,7 @@ const SidebarRight = () => {
                             <p className="text-sm font-medium leading-7 text-black">{contact}</p>
                         </Button>
                     ))}
-                </div>
+                </div> */}
             </div>
         </div>
     );
