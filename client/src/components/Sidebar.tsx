@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Button } from "./ui/button";
 import { LiaUserFriendsSolid } from "react-icons/lia";
-import { BsPostcardHeart } from "react-icons/bs";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 import SidebarToggleButton from "./SidebarToggleButton";
@@ -41,12 +40,12 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     )}
                     <Button variant="ghost" className="flex items-center space-x-2 w-full justify-start p-2 py-6 ps-4">
                         <LiaUserFriendsSolid size={isOpen ? 24 : 24} className="text-black mr-2" />
-                        {isOpen && <p className="text-base font-semibold leading-7 text-black">Ami(e)s</p>}
+                        {isOpen && <p className="text-base font-semibold leading-7 text-black">Invitations</p>}
                     </Button>
-                    <Button variant="ghost" className="flex items-center space-x-2 w-full justify-start p-2 py-6 ps-4">
+                    {/* <Button variant="ghost" className="flex items-center space-x-2 w-full justify-start p-2 py-6 ps-4">
                         <BsPostcardHeart size={isOpen ? 24 : 24} className="text-black mr-2" />
                         {isOpen && <p className="text-base font-semibold leading-7 text-black">Fils</p>}
-                    </Button>
+                    </Button> */}
                 </div>
             </div>
         </div>
