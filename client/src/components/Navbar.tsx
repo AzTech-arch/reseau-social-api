@@ -81,7 +81,7 @@ const Navbar = () => {
                             <DropdownMenuLabel>Salut👋 Cousema</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuGroup>
-                                <Link to="/admin/profile">
+                                <Link to="/friendzy/profil">
                                     <DropdownMenuItem>
                                         <User className="mr-2 h-4 w-4" />
                                         <span> Profile</span>
