@@ -1,26 +1,31 @@
-import {  Image, Paperclip, Smile, SendHorizontal } from "lucide-react";
+import { Image, Paperclip, Smile, SendHorizontal } from "lucide-react";
+import { Textarea } from "../ui/textarea"
+import { Button } from "../ui/button";
 
 export default function ChatBottomBar() {
     return (
         <div className="flex items-center bg-white p-2  border-gray-300 space-x-2">
-           
-            <button className="p-2 rounded-full hover:bg-gray-100">
+
+
+            <Button variant="ghost" size="sm" >
                 <Image className="text-gray-500" size={24} />
-            </button>
-            <button className="p-2 rounded-full hover:bg-gray-100">
+            </Button>
+
+            <Button variant="ghost" size="sm" >
                 <Paperclip className="text-gray-500" size={24} />
-            </button>
-            <input
-                type="text"
+            </Button>
+
+            <Textarea
                 placeholder="Aa"
-                className="flex-grow p-2 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500"
+                className="shadow "
             />
-            <button className="p-2 rounded-full hover:bg-gray-100">
+            <Button variant="ghost" size="sm" >
                 <Smile className="text-gray-500" size={24} />
-            </button>
-            <button className="p-2 rounded-full hover:bg-gray-100">
+            </Button>
+
+            <Button variant="ghost" size="sm" >
                 <SendHorizontal className="text-gray-500" size={24} />
-            </button>
+            </Button>
         </div>
     );
 }

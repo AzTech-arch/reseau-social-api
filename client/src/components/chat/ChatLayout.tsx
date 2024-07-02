@@ -14,7 +14,7 @@ const ChatLayout = () => {
     ];
 
     return (
-        <div className="flex bg-white shadow border ">
+        <div className="flex bg-white shadow-sm border ">
             <SidebarChat />
             <div className="flex-1 flex flex-col">
                 <ChatTopBar />
