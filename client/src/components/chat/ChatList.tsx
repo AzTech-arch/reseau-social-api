@@ -17,7 +17,7 @@ const ChatList = ({ messages }: ChatListProps) => {
     }, [messages]);
 
     return (
-        <div ref={messagesContainerRef} className="flex-1 overflow-y-auto p-4 max-h-96">
+        <div ref={messagesContainerRef} className="flex-1  p-4 ">
             <AnimatePresence>
                 {messages.map((message, index) => (
                     <motion.div
