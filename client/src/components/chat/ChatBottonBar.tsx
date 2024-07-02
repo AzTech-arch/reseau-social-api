@@ -1,12 +1,18 @@
-import { Image, Paperclip, Smile, SendHorizontal } from "lucide-react";
+import { Image, Paperclip, SendHorizontal } from "lucide-react";
 import { Textarea } from "../ui/textarea"
 import { Button } from "../ui/button";
+import { EmojiPicker } from "../EmojiPicker";
+import { useState } from "react";
 
 export default function ChatBottomBar() {
+    const [message, setMessage] = useState<string>("");
+
+    const handleEmojiSelect = (emoji: { native: string }) => {
+        setMessage(prevMessage => prevMessage + emoji.native);
+    };
+
     return (
-        <div className="flex items-center bg-white p-2  border-gray-300 space-x-2">
-
-
+        <div className="flex items-center bg-white  border-gray-300 space-x-2">
             <Button variant="ghost" size="sm" >
                 <Image className="text-gray-500" size={24} />
             </Button>
@@ -16,12 +22,13 @@ export default function ChatBottomBar() {
             </Button>
 
             <Textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 placeholder="Aa"
-                className="shadow "
+                className="flex-grow shadow"
             />
-            <Button variant="ghost" size="sm" >
-                <Smile className="text-gray-500" size={24} />
-            </Button>
+
+            <EmojiPicker onChange={handleEmojiSelect} />
 
             <Button variant="ghost" size="sm" >
                 <SendHorizontal className="text-gray-500" size={24} />
