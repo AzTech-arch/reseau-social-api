@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar"
-
+import { Link } from "react-router-dom"
 
 
 
@@ -11,7 +11,10 @@ const SidebarRight = () => {
             <div className="p-4">
                 <div className="flex justify-between items-center mb-4">
                     <h4 className="scroll-m-20 text-xl font-semibold tracking-tight text-black leading-7">Invitations</h4>
-                    <Button variant="ghost" className="text-cyan-700 text-sm">Voir tout</Button>
+                    <Link to="/friendzy/invitation">
+                        <Button variant="ghost" className="text-cyan-700 text-sm">Voir tout</Button>
+                    </Link>
+
                 </div>
 
                 <div className="mt-4 mb-4">
