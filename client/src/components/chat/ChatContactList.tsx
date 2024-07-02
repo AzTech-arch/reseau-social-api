@@ -1,4 +1,4 @@
-import { Avatar, AvatarImage, AvatarFallback } from "../components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 export default function ChatContactList() {
     const contacts = [
@@ -7,7 +7,6 @@ export default function ChatContactList() {
         { name: 'Charlie', message: 'Hey, do you have any recommendations for a good movie to watch?', avatar: 'https://placehold.co/200x/2e83ad/ffffff.svg?text=ʕ•́ᴥ•̀ʔ&font=Lato' },
         // Add more contacts here...
     ];
-
 
     return (
         <>
@@ -26,5 +25,5 @@ export default function ChatContactList() {
                 </div>
             ))}
         </>
-    )
+    );
 }
