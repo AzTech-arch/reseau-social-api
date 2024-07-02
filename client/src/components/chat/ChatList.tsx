@@ -7,21 +7,22 @@ interface ChatListProps {
 }
 
 const ChatList = ({ messages }: ChatListProps) => {
-    const messagesContainerRef = useRef < HTMLDivElement > (null);
+    const messagesContainerRef = useRef<HTMLDivElement>(null);
+    const lastMessageRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (messagesContainerRef.current) {
-            messagesContainerRef.current.scrollTop =
-                messagesContainerRef.current.scrollHeight;
+        if (lastMessageRef.current) {
+            lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
         }
     }, [messages]);
 
     return (
-        <div ref={messagesContainerRef} className="flex-1  p-4 ">
+        <div ref={messagesContainerRef} className="p-4">
             <AnimatePresence>
                 {messages.map((message, index) => (
                     <motion.div
                         key={index}
+                        ref={index === messages.length - 1 ? lastMessageRef : null}
                         layout
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -31,18 +32,18 @@ const ChatList = ({ messages }: ChatListProps) => {
                     >
                         {message.type === 'incoming' && (
                             <div className="w-9 h-9 rounded-full flex items-center justify-center mr-2">
-                                <Avatar className="w-8 h-8 rounded-full">
+                                <Avatar className="w-8 h-8 rounded-full shadow">
                                     <AvatarImage src={message.avatar} alt="User Avatar" />
                                     <AvatarFallback>?</AvatarFallback>
                                 </Avatar>
                             </div>
                         )}
-                        <div className={`flex max-w-96 rounded-lg p-3 gap-3 ${message.type === 'outgoing' ? 'bg-indigo-500 text-white' : 'bg-white text-gray-700'}`}>
+                        <div className={`flex max-w-96 text-base rounded-lg p-3 gap-3 ${message.type === 'outgoing' ? 'bg-indigo-500 text-white' : 'bg-cyan-700 text-white'}`}>
                             <p>{message.text}</p>
                         </div>
                         {message.type === 'outgoing' && (
                             <div className="w-9 h-9 rounded-full flex items-center justify-center ml-2">
-                                <Avatar className="w-8 h-8 rounded-full">
+                                <Avatar className="w-8 h-8 rounded-full shadow">
                                     <AvatarImage src={message.avatar} alt="My Avatar" />
                                     <AvatarFallback>?</AvatarFallback>
                                 </Avatar>
