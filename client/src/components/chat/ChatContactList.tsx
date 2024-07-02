@@ -11,7 +11,7 @@ export default function ChatContactList() {
     return (
         <>
             {contacts.map((contact, index) => (
-                <div key={index} className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md">
+                <div key={index} className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md  overflow-hidden">
                     <div className="w-12 h-12 bg-gray-300 rounded-full mr-3">
                         <Avatar className="w-12 h-12 rounded-full">
                             <AvatarImage src={contact.avatar} alt={`${contact.name} Avatar`} />
