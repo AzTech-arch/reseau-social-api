@@ -1,11 +1,12 @@
 import { z } from "zod"
 import { useState } from "react"
 import { Button } from "./ui/button"
-import { Link, useNavigate } from "react-router-dom"
+import { Toaster, toast } from 'sonner'
 import { FcGoogle } from "react-icons/fc"
 import { Eye, EyeOff } from "lucide-react"
 import { Input } from "../components/ui/input"
 import { register } from '../services/authService'
+import { Link, useNavigate } from "react-router-dom"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../components/ui/form"
@@ -54,8 +55,12 @@ export default function RegisterForm() {
 
         try {
             await register(dataRegister)
-            // Inscription réussie, rediriger vers la page de connexion
-            navigate('/login');
+            // Inscription réussie, afficher le toast et rediriger vers la page de connexion
+            toast.success('Inscription réussie, vous allez être redirigé vers la page de connexion');
+            setTimeout(() => {
+                navigate('/login');
+            }, 3000); // Rediriger après 3 secondes
+            
         } catch (error) {
             console.error(error)
         }
