@@ -1,7 +1,7 @@
 import { z } from "zod"
+import { toast } from 'sonner'
 import { useState } from "react"
 import { Button } from "./ui/button"
-import { toast } from 'sonner'
 import { FcGoogle } from "react-icons/fc"
 import { Eye, EyeOff } from "lucide-react"
 import { Input } from "../components/ui/input"
