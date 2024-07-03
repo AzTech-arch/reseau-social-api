@@ -1,7 +1,7 @@
 import api from './apiConfig'
 
 // Définir les interfaces des données de l'utilisateur
-interface dataRegisterProps { lastname: string, firstname: string, email: string, password: string }
+type dataRegisterProps = { lastname: string, firstname: string, email: string, password: string }
 
 
 // Inscrire un nouvel utilisateur
