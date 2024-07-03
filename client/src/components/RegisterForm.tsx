@@ -15,11 +15,12 @@ const formSchema = z.object({
     lastname: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères" }),
     firstname: z.string().min(2, { message: "Le prénom doit contenir au moins 2 caractères" }),
     email: z.string().email({ message: "Adresse e-mail invalide" }),
-    password: z.string().min(8, { message: "Le mot de passe doit contenir au moins 8 caractères" })
+    password: z.string().min(6, { message: "Le mot de passe doit contenir au moins 8 caractères" })
 })
 
 // Définir les types des données du formulaire
 type FormSchemaType = z.infer<typeof formSchema>
+
 
 export default function RegisterForm() {
     /**
@@ -55,6 +56,7 @@ export default function RegisterForm() {
             console.error(error)
         }
     };
+    
     /**
      * ! AFFICHAGE (render) de l'application
      */
@@ -98,7 +100,7 @@ export default function RegisterForm() {
                                             <FormItem>
                                                 <FormLabel>Prénom</FormLabel>
                                                 <FormControl>
-                                                    <Input {...field} placeholder="Cousema Anjary" className="shadow-sm"  />
+                                                    <Input {...field} placeholder="Cousema Anjary" className="shadow-sm" />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
@@ -156,10 +158,10 @@ export default function RegisterForm() {
                                     <span className="bg-background px-2 text-muted-foreground">Ou continuer avec</span>
                                 </div>
                             </div>
-             
-                                <div className="grid gap-2">
-                                    <Button type="button" variant="outline" className="w-full"><FcGoogle size={18} className="mr-1" />Google</Button>
-                                </div>                
+
+                            <div className="grid gap-2">
+                                <Button type="button" variant="outline" className="w-full"><FcGoogle size={18} className="mr-1" />Google</Button>
+                            </div>
                         </div>
                     </form>
                 </Form>
