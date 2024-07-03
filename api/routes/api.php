@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,10 @@ Route::middleware('guest')->group(function () {
 
     Route::controller(RegisterController::class)->group(function () {
         Route::post('register', 'store');
+    });
+
+    Route::controller(AuthenticatedSessionController::class)->group(function () {
+        Route::post('login', 'store');
     });
 });
 
