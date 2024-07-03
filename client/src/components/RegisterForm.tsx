@@ -26,7 +26,7 @@ export default function RegisterForm() {
     /**
     * ! STATE (état, données) de l'application
     */
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false)
     const form = useForm<FormSchemaType>({
         resolver: zodResolver(formSchema),
         defaultValues: {
