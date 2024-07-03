@@ -1,7 +1,7 @@
 import { z } from "zod"
 import { useState } from "react"
 import { Button } from "./ui/button"
-import { Toaster, toast } from 'sonner'
+import { toast } from 'sonner'
 import { FcGoogle } from "react-icons/fc"
 import { Eye, EyeOff } from "lucide-react"
 import { Input } from "../components/ui/input"
@@ -55,11 +55,9 @@ export default function RegisterForm() {
 
         try {
             await register(dataRegister)
-            // Inscription réussie, afficher le toast et rediriger vers la page de connexion
-            toast.success('Inscription réussie, vous allez être redirigé vers la page de connexion');
-            setTimeout(() => {
-                navigate('/login');
-            }, 3000); // Rediriger après 3 secondes
+            // Enregistrer le succès de l'inscription dans le localStorage
+            localStorage.setItem('registerSuccess', 'true')
+            navigate('/login') // Rediriger vers la page de connexion
 
         } catch (error) {
             toast.error('Une erreur est survenue lors de l\'inscription');
@@ -71,7 +69,6 @@ export default function RegisterForm() {
      */
     return (
         <>
-            <Toaster />
             <div className="p-8 max-w-lg w-full">
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-4xl mb-4 font-serif">Créer un compte</h1>
                 <p className="mb-4 text-md text-muted-foreground text-black">
@@ -126,7 +123,7 @@ export default function RegisterForm() {
                                         <FormItem>
                                             <FormLabel>E-mail</FormLabel>
                                             <FormControl>
-                                                <Input {...field} placeholder="Numéro mobile ou e-mail" className="shadow-sm" />
+                                                <Input {...field} placeholder="@exemple.com" className="shadow-sm" />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
