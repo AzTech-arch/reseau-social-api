@@ -60,9 +60,9 @@ export default function RegisterForm() {
             setTimeout(() => {
                 navigate('/login');
             }, 3000); // Rediriger après 3 secondes
-            
+
         } catch (error) {
-            console.error(error)
+            toast.error('Une erreur est survenue lors de l\'inscription');
         }
     };
 
@@ -71,7 +71,7 @@ export default function RegisterForm() {
      */
     return (
         <>
-
+            <Toaster />
             <div className="p-8 max-w-lg w-full">
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-4xl mb-4 font-serif">Créer un compte</h1>
                 <p className="mb-4 text-md text-muted-foreground text-black">
