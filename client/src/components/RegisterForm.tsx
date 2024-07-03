@@ -1,10 +1,11 @@
 import { z } from "zod"
 import { useState } from "react"
 import { Button } from "./ui/button"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { FcGoogle } from "react-icons/fc"
 import { Eye, EyeOff } from "lucide-react"
 import { Input } from "../components/ui/input"
+import { register } from '../services/authService'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../components/ui/form"
@@ -27,6 +28,8 @@ export default function RegisterForm() {
     * ! STATE (état, données) de l'application
     */
     const [showPassword, setShowPassword] = useState(false)
+
+    const navigate = useNavigate()
     const form = useForm<FormSchemaType>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -50,13 +53,14 @@ export default function RegisterForm() {
         }
 
         try {
-            console.log(dataRegister)
-            // Handle form submission
+            await register(dataRegister)
+            // Inscription réussie, rediriger vers la page de connexion
+            navigate('/login');
         } catch (error) {
             console.error(error)
         }
     };
-    
+
     /**
      * ! AFFICHAGE (render) de l'application
      */
