@@ -1,6 +1,6 @@
 import api from './apiConfig'
 
-// Définir les interfaces des données de l'utilisateur
+// Définir les types des données du formulaire
 type dataRegisterProps = { lastname: string, firstname: string, email: string, password: string }
 
 
