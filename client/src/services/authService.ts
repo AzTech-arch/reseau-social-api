@@ -26,7 +26,11 @@ export const login = async (dataLogin: dataLoginProps) => {
 
         if (response.data.token) {
             // Enregistrer le token dans le localStorage
-           c
+            localStorage.setItem('token', response.data.token)
+            localStorage.setItem('id', response.data.user.id)
+            localStorage.setItem('last_name', response.data.user.last_name)
+            localStorage.setItem('first_name', response.data.user.first_name)
+            localStorage.setItem('email', response.data.user.email)
         }
 
     } catch (error) {

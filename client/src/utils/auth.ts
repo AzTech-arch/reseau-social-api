@@ -1,5 +1,4 @@
-import Cookies from 'js-cookie';
-
-export const isAuthenticated = (): boolean => {
-    return !!Cookies.get('auth_token'); // Vérifie si le cookie 'auth_token' existe
-};
+export const isAuthenticated = () => {
+    const token = localStorage.getItem('userToken');
+    return !!token; // retourne true si le token existe, sinon false
+}
