@@ -21,6 +21,9 @@ class RegisterController extends Controller
         // Créer un nouvel utilisateur
         $user = User::create($validated);
 
+        // Générer un jeton d'accès
+        $token = $user->createToken('auth_token')->plainTextToken;
+
         // Retourner une réponse de succès avec le jeton et les informations de l'utilisateur 201: Created
         return response()->json([
             'message' => 'User created successfully',
