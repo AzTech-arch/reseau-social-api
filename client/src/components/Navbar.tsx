@@ -1,6 +1,7 @@
 import logo from '../assets/images/logo.png'
+import useAuth from '../hooks/useAuth'
 import { Input } from "../components/ui/input"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Avatar, AvatarImage, AvatarFallback } from "../components/ui/avatar"
 import { LogOut, Settings, User, MessageSquareMore, Search, Bell } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu"
@@ -13,6 +14,23 @@ import { Tooltip, TooltipTrigger, TooltipProvider } from "../components/ui/toolt
 
 
 const Navbar = () => {
+    const navigate = useNavigate()
+    const { user, logout } = useAuth()
+
+    const handleLogout = async () => {
+        try {
+            await logout()
+            // Déconnexion réussie, rediriger vers la page de connexion
+            navigate('/login')
+
+        } catch (error) {
+            // Afficher le message d'erreur
+            console.error('Logout failed:', error)
+        }
+    }
+
+
+
     return (
         <nav className="bg-white p-4 shadow sticky top-0 z-50">
             <div className="container-fluid mx-20    flex justify-between items-center">
@@ -78,7 +96,7 @@ const Navbar = () => {
 
 
                         <DropdownMenuContent className="w-56" align='center' forceMount>
-                            <DropdownMenuLabel>Salut👋 Cousema</DropdownMenuLabel>
+                            <DropdownMenuLabel>Salut👋 {user.first_name}</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuGroup>
                                 <Link to="/friendzy/profil">
@@ -95,7 +113,7 @@ const Navbar = () => {
                                 </Link>
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem >
+                            <DropdownMenuItem onClick={handleLogout} >
                                 <LogOut className="mr-2 h-4 w-4" />
                                 <span>Déconnexion</span>
                             </DropdownMenuItem>
