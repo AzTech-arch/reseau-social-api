@@ -33,7 +33,7 @@ export default function useAuth() {
     useEffect(() => {
         if (auth) {
             setUser({
-                id: localStorage.getItem('userId') || '',
+                id: localStorage.getItem('id') || '',
                 last_name: localStorage.getItem('last_name') || '',
                 first_name: localStorage.getItem('first_name') || '',
                 email: localStorage.getItem('email') || '',
@@ -51,7 +51,7 @@ export default function useAuth() {
                 setAuth(true);
 
                 // Stocker les informations de l'utilisateur dans le stockage local
-                localStorage.setItem('userId', response.user.id);
+                localStorage.setItem('id', response.user.id);
                 localStorage.setItem('last_name', response.user.last_name);
                 localStorage.setItem('first_name', response.user.first_name);
                 localStorage.setItem('email', response.user.email);
@@ -60,7 +60,7 @@ export default function useAuth() {
                 setUser(response.user);
 
                 // Rediriger vers une page protégée après la connexion réussie
-                navigate('/fiendzy');
+                navigate('/friendzy');
             }
         } catch (error) {
             console.error('Login failed:', error);

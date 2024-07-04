@@ -1,5 +1,5 @@
 export const isAuthenticated = () => {
-    const token = localStorage.getItem('userToken');
+    const token = localStorage.getItem('token');
     return !!token; // retourne true si le token existe, sinon false
 }
 
@@ -9,6 +9,4 @@ export const removeToken = () => {
     localStorage.removeItem('last_name');
     localStorage.removeItem('first_name');
     localStorage.removeItem('email');
-    localStorage.removeItem('image');
-    localStorage.removeItem('coverPhoto');
 }
