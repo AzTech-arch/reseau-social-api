@@ -12,6 +12,7 @@ export const register = async (dataRegister: dataRegisterProps) => {
         return response.data; // Retourner les données de la réponse de l'API
 
     } catch (error) {
+        // Gérer les erreurs et les afficher dans la console
         console.error('Erreur lors de l\'inscription:', error)
     }
 }
