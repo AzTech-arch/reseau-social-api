@@ -26,13 +26,16 @@ class AuthenticatedSessionUserController extends Controller
         // Générer un jeton d'accès
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        // Stocker le jeton dans un cookie sécurisé
-        $cookie = cookie('auth_token', $token, 60, null, null, false, true);
-
         // Retourner une réponse de succès avec le jeton et les informations de l'utilisateur 200: OK
         return response()->json([
             'message' => 'User authenticated successfully',
-            'user' => $user,
-        ], 200)->withCookie($cookie);
+            'token' => $token,
+            'user' => [
+                'id' => $user->id,
+                'last_name' => $user->last_name,
+                'first_name' => $user->first_name,
+                'email' => $user->email
+            ],
+        ], 200);
     }
 }

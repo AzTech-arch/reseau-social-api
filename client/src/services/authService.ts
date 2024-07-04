@@ -23,7 +23,11 @@ export const login = async (dataLogin: dataLoginProps) => {
     try {
         // Appel à l'API pour connecter un utilisateur
         const response = await api.post('/login', dataLogin);
-        return response.data // Retourner les données de la réponse de l'API
+
+        if (response.data.token) {
+            // Enregistrer le token dans le localStorage
+           c
+        }
 
     } catch (error) {
         // Gérer les erreurs et les afficher dans la console
