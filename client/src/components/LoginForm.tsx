@@ -1,7 +1,8 @@
 import { z } from "zod"
 import { useState } from "react"
+import useAuth from '../hooks/useAuth'
 import { Button } from "./ui/button"
-import { Link } from "react-router-dom"
+import { Link,useNavigate } from "react-router-dom"
 import { Eye, EyeOff } from "lucide-react"
 import { Input } from "../components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -23,6 +24,8 @@ export default function LoginForm() {
     /**
      * ! STATE (état, données) de l'application
      */
+    const navigate = useNavigate()
+    const { login } = useAuth()
     const [showPassword, setShowPassword] = useState(false);
     const form = useForm<FormSchemaType>({
         resolver: zodResolver(formSchema),
@@ -35,18 +38,21 @@ export default function LoginForm() {
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
-    const handleRegister: SubmitHandler<FormSchemaType> = async (data) => {
+    const handleLogin: SubmitHandler<FormSchemaType> = async (data) => {
         // Données à envoyer pour l'inscription
-        const dataRegister = {
+        const dataLogin = {
             email: data.email,
             password: data.password
         }
 
         try {
-            console.log(dataRegister)
-            // Handle form submission
-        } catch (error) {
-            console.error(error)
+            await login(dataLogin)
+            // Authentification réussie, rediriger vers la page tableau de bord
+            navigate('/friendzy')
+
+        } catch (err) {
+            // Afficher le message d'erreur
+            console.error(err);
         }
     };
 
@@ -64,7 +70,7 @@ export default function LoginForm() {
                     Vous n'avez pas de compte ? Inscrivez-vous en cliquant <Link to="/register" className="underline text-cyan-700">ici</Link>
                 </p>
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(handleRegister)}>
+                    <form onSubmit={form.handleSubmit(handleLogin)}>
                         <div className="grid gap-4">
                             <div className="grid gap-2">
                                 <FormField

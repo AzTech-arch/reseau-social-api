@@ -22,7 +22,7 @@ class AuthenticatedSessionUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'strin', 'email'],
+            'email' => ['required', 'email'],
             'password' => ['required', 'string'],
         ];
     }

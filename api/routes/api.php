@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\AuthenticatedSessionUserController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(RegisterController::class)->group(function () {
     Route::post('register', 'store');
+});
+
+Route::controller(AuthenticatedSessionUserController::class)->group(function () {
+    Route::post('login', 'store');
 });
