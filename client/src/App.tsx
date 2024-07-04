@@ -1,11 +1,14 @@
 import { Route, Routes } from "react-router-dom"
 import Home from "./pages/Home"
+import PrivateRoute from "./components/routes/PrivateRoute"
+import PublicRoute from "./components/routes/PublicRoute"
 import Register from "./pages/Register"
 import Login from "./pages/Login"
 import DashboardClient from "./pages/DashboardClient"
 import ChatClient from "./pages/ChatClient"
 import Profil from "./pages/Profil"
 import InvitationClient from "./pages/InvitationClient"
+import { UserProvider } from "./contexts/UserContext"
 
 export default function App() {
   /**
@@ -24,15 +27,25 @@ export default function App() {
    */
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/friendzy" element={<DashboardClient />} />
-        <Route path="/friendzy/chat" element={<ChatClient />} />
-        <Route path="/friendzy/profil" element={<Profil />} />
-        <Route path="/friendzy/invitation" element={<InvitationClient />} />
-      </Routes>
+      <UserProvider>
+        <Routes>
+          {/* Public Routes */}
+          <Route element={<PublicRoute />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+          </Route>
+
+          {/* Protected Routes */}
+          <Route element={<PrivateRoute />}>
+            <Route path="/friendzy" element={<DashboardClient />} />
+            <Route path="/friendzy/chat" element={<ChatClient />} />
+            <Route path="/friendzy/profil" element={<Profil />} />
+            <Route path="/friendzy/invitation" element={<InvitationClient />} />
+          </Route>
+
+        </Routes>
+      </UserProvider>
     </>
   )
 }
