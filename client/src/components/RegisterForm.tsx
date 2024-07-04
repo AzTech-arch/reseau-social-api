@@ -14,8 +14,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 
 // Définir le schéma de validation avec Zod
 const formSchema = z.object({
-    lastname: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères" }),
-    firstname: z.string().min(2, { message: "Le prénom doit contenir au moins 2 caractères" }),
+    last_name: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères" }),
+    first_name: z.string().min(2, { message: "Le prénom doit contenir au moins 2 caractères" }),
     email: z.string().email({ message: "Adresse e-mail invalide" }),
     password: z.string().min(6, { message: "Le mot de passe doit contenir au moins 8 caractères" })
 })
@@ -34,8 +34,8 @@ export default function RegisterForm() {
     const form = useForm<FormSchemaType>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            lastname: "",
-            firstname: "",
+            last_name: "",
+            first_name: "",
             email: "",
             password: ""
         }
@@ -47,8 +47,8 @@ export default function RegisterForm() {
     const handleRegister: SubmitHandler<FormSchemaType> = async (data) => {
         // Données à envoyer pour l'inscription
         const dataRegister = {
-            lastname: data.lastname,
-            firstname: data.firstname,
+            last_name: data.last_name,
+            first_name: data.first_name,
             email: data.email,
             password: data.password
         }
@@ -85,7 +85,7 @@ export default function RegisterForm() {
                                 <div className="grid gap-2">
                                     <FormField
                                         control={form.control}
-                                        name="lastname"
+                                        name="last_name"
                                         render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel>Nom</FormLabel>
@@ -101,7 +101,7 @@ export default function RegisterForm() {
                                 <div className="grid gap-2">
                                     <FormField
                                         control={form.control}
-                                        name="firstname"
+                                        name="first_name"
                                         render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel>Prénom</FormLabel>

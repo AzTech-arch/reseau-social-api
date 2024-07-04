@@ -1,7 +1,7 @@
 import api from './apiConfig'
 
 // Définir les types des données du formulaire
-type dataRegisterProps = { lastname: string, firstname: string, email: string, password: string }
+type dataRegisterProps = { last_name: string, first_name: string, email: string, password: string }
 
 
 // Inscrire un nouvel utilisateur
