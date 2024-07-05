@@ -1,27 +1,38 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader ,  DialogTitle,} from "../components/ui/dialog";
-import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
-import { Input } from "../components/ui/input";
-import { Textarea } from "../components/ui/textarea";
-import { Button } from "../components/ui/button";
+import useAuth from '../hooks/useAuth'
 import { BsImage } from "react-icons/bs";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
+import { Textarea } from "../components/ui/textarea";
+import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, } from "../components/ui/dialog";
 
-const CreatePost = () => {
+export default function CreatePost() {
+    /**
+     * ! STATE (état, données) de l'application
+     */
+    const { user } = useAuth()
+
     const [open, setOpen] = useState(false);
     const [file, setFile] = useState(null);
 
+
+
+    /**
+     * ! COMPORTEMENT (méthodes, fonctions) de l'application
+     */
     const toggleDialog = () => {
         setOpen(!open);
     };
-
-    // const handleFileChange = (event) => {
-    //     setFile(event.target.files[0]);
-    // };
 
     const handleRemoveFile = () => {
         setFile(null);
     };
 
+
+    /**
+     * ! AFFICHAGE (render) de l'application
+     */
     return (
         <div className="bg-white p-4 rounded-lg shadow mb-4">
             <div className="flex items-center space-x-4">
@@ -32,7 +43,7 @@ const CreatePost = () => {
 
                 <Input
                     type="text"
-                    placeholder={`Quoi de neuf, Cousema Anjary ?`}
+                    placeholder={`Quoi de neuf, ${user.first_name} ?`}
                     className="bg-gray-100 rounded-full cursor-pointer"
                     readOnly
                     onClick={toggleDialog}
@@ -67,7 +78,7 @@ const CreatePost = () => {
                             <div className="flex items-center justify-between">
                                 <p className="text-gray-500"></p>
                                 <Button variant="ghost" onClick={handleRemoveFile}>
-                               
+
                                 </Button>
                             </div>
                         ) : (
@@ -75,7 +86,7 @@ const CreatePost = () => {
                                 <input
                                     type="file"
                                     className="hidden"
-                                    // onChange={handleFileChange}
+                                // onChange={handleFileChange}
                                 />
                                 <BsImage className="text-gray-500 w-10 h-10 mb-2" />
                                 <p className="text-gray-500">Ajouter des photos/vidéos</p>
@@ -90,5 +101,3 @@ const CreatePost = () => {
         </div>
     );
 };
-
-export default CreatePost;
