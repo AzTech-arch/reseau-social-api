@@ -12,6 +12,9 @@ type User = { id: string, last_name: string, first_name: string, email: string }
 // Définir le type LoginResponse pour typer la réponse de connexion
 type LoginResponse = { token: string, user: User }
 
+// Définir le type updateUserImage pour typer la mise à jour de la photo de profil
+type updateUserImage = { dataImage: File }
+
 
 
 
@@ -48,6 +51,22 @@ export const login = async (dataLogin: LoginProps): Promise<LoginResponse> => {
         console.error('Erreur lors de la connexion:', error)
         throw new Error('Erreur lors de la connexion')
     }
+}
+
+
+// Mettre à jour la photo de profil de l'utilisateur
+export const updateUserImage = async (dataImage: File): Promise<void> => {
+    try {
+        // Appel à l'API pour mettre à jour la photo de profil de l'utilisateur
+        const response = await api.post('/updateUserImage', dataImage, { headers: { 'Content-Type': 'multipart/form-data' } })
+        return response.data // Retourner les données de la réponse de l'API    
+
+    } catch (error) {
+        // Gérer les erreurs et les afficher dans la console
+        console.error('Erreur lors de la mise à jour de la photo de profil:', error)
+
+    }
+
 }
 
 // Déconnecter un utilisateur
