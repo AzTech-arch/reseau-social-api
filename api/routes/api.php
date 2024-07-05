@@ -20,11 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::controller(RegisterController::class)->group(function () {
-    Route::post('register', 'store');
+// Route protected
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('logout', [AuthenticatedSessionUserController::class, 'destroy']);
 });
 
-Route::controller(AuthenticatedSessionUserController::class)->group(function () {
-    Route::post('login', 'store');
-});
+// Route public 
+Route::post('register', [RegisterController::class, 'store']);
+Route::post('login', [AuthenticatedSessionUserController::class, 'store']);;

@@ -32,4 +32,12 @@ class AuthenticatedSessionUserController extends Controller
             'token' => $token,
         ], 200);
     }
+
+    public function destroy()
+    {
+        // Renvoie une réponse JSON avec un message de succès
+        return response()->json([
+            'message' => 'User logged out successfully',
+        ], 200);
+    }
 }
