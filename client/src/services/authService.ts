@@ -48,7 +48,7 @@ export const login = async (dataLogin: LoginProps): Promise<LoginResponse> => {
         console.error('Erreur lors de la connexion:', error)
         throw new Error('Erreur lors de la connexion')
     }
-};
+}
 
 // Déconnecter un utilisateur
 export const logout = async (): Promise<void> => {
@@ -65,4 +65,4 @@ export const logout = async (): Promise<void> => {
         // Gérer les erreurs et les afficher dans la console
         console.error('Erreur lors de la déconnexion:', error)
     }
-};
+}
