@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Auth\AuthenticatedSessionUserController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Frontend\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route protected
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthenticatedSessionUserController::class, 'destroy']);
+    Route::post('updateUserImage', [DashboardController::class, 'updateUserImage']);
 });
 
 // Route public 
