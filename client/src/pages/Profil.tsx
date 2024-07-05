@@ -1,16 +1,17 @@
+import { useState } from "react";
+import { Heart } from "lucide-react";
+import useAuth from '../hooks/useAuth'
+import { FaHeart } from "react-icons/fa";
 import Navbar from "../components/Navbar";
+import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
-import { Camera, Pencil, MoreHorizontal, Search } from "lucide-react";
+import { Textarea } from "../components/ui/textarea";
+import { BsHeart, BsChat, BsShare } from "react-icons/bs";
+import { Card, CardContent, CardFooter } from "../components/ui/card"
+import { Camera, Pencil, MoreHorizontal, Search } from "lucide-react"
 import { Avatar, AvatarImage, AvatarFallback } from "../components/ui/avatar";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs";
-import { Input } from "../components/ui/input";
-import { useState } from "react";
-import { Card, CardContent, CardFooter } from "../components/ui/card";
 
-import { BsHeart, BsChat, BsShare } from "react-icons/bs";
-import { FaHeart } from "react-icons/fa";
-import { Heart } from "lucide-react";
-import { Textarea } from "../components/ui/textarea";
 
 const contacts = [
     { name: 'Rahim Fayasee J-w', friendsInCommon: 123, avatar: 'https://via.placeholder.com/150' },
@@ -19,21 +20,29 @@ const contacts = [
     { name: 'Nirina Armanda Kassamaly', friendsInCommon: 89, avatar: 'https://via.placeholder.com/150' },
     { name: 'Dylan', friendsInCommon: 75, avatar: 'https://via.placeholder.com/150' },
     { name: 'Koureiche Aly', friendsInCommon: 63, avatar: 'https://via.placeholder.com/150' },
-    { name: 'Koureiche Aly', friendsInCommon: 63, avatar: 'https://via.placeholder.com/150' },
-    { name: 'Koureiche Aly', friendsInCommon: 63, avatar: 'https://via.placeholder.com/150' },
-    { name: 'Koureiche Aly', friendsInCommon: 63, avatar: 'https://via.placeholder.com/150' },
-    // Ajoutez plus de contacts ici
 ];
 
 
-
 export default function Profil() {
+    /**
+     * ! STATE (état, données) de l'application
+     */
+    const { user } = useAuth()
+
     const [showComments, setShowComments] = useState(false);
+
+    /**
+     * ! COMPORTEMENT (méthodes, fonctions) de l'application
+     */
 
     const toggleComments = () => {
         setShowComments(!showComments);
     };
 
+
+    /**
+    * ! AFFICHAGE (render) de l'application
+    */
     return (
         <>
             <div className="relative min-h-screen w-full ">
@@ -59,7 +68,7 @@ export default function Profil() {
                             </div>
 
                             <div className="ml-4">
-                                <h1 className="text-2xl font-bold">Cousema Anjary</h1>
+                                <h1 className="text-2xl font-bold">{user.first_name}</h1>
                                 <p className="text-gray-600">402 ami(e)s</p>
                             </div>
                             <div className="ml-auto flex space-x-2">
