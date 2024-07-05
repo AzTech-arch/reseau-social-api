@@ -1,10 +1,11 @@
 import { FC } from "react";
+import { Button } from "./ui/button"
+import useAuth from '../hooks/useAuth'
 import { Link } from "react-router-dom"
-import { Button } from "./ui/button";
 import { LiaUserFriendsSolid } from "react-icons/lia";
+import SidebarToggleButton from "./SidebarToggleButton";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
-import SidebarToggleButton from "./SidebarToggleButton";
 
 interface SidebarProps {
     isOpen: boolean // boolean pour savoir si le sidebar est ouvert ou non
@@ -14,8 +15,21 @@ interface SidebarProps {
 
 
 const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
+    /**
+     * ! STATE (état, données) de l'application
+     */
+    const { user } = useAuth()
 
 
+    /**
+     * ! COMPORTEMENT (méthodes, fonctions) de l'application
+     */
+
+
+
+    /**
+     * ! AFFICHAGE (render) de l'application
+     */
     return (
         <div className={`fixed left-0 h-full bg-white text-gray-200 shadow-md transition-all duration-300 ${isOpen ? 'w-64' : 'w'}`}>
             <div className="flex flex-col flex-grow p-4">
@@ -25,7 +39,7 @@ const Sidebar: FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                             <AvatarImage src="" alt="@shadcn" />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
-                        {isOpen && <p className="text-sm font-semibold leading-7 text-black">Cousema Anjary</p>}
+                        {isOpen && <p className="text-sm font-semibold leading-7 text-black">{user.first_name}</p>}
                     </Button>
                     <SidebarToggleButton isOpen={isOpen} toggleSidebar={toggleSidebar} />
                 </div>
