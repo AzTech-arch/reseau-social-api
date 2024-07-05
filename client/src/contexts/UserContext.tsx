@@ -6,6 +6,7 @@ type User = {
     last_name: string;
     first_name: string;
     email: string;
+    image?: string;
 };
 
 // Définir l'interface UserContextType pour typer le contexte utilisateur
@@ -19,7 +20,8 @@ const defaultUser: User = {
     id: '',
     last_name: '',
     first_name: '',
-    email: ''
+    email: '',
+    image: ''
 };
 
 // Créer le contexte utilisateur avec les types appropriés
@@ -35,7 +37,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             id: localStorage.getItem('id') || '',
             last_name: localStorage.getItem('last_name') || '',
             first_name: localStorage.getItem('first_name') || '',
-            email: localStorage.getItem('email') || ''
+            email: localStorage.getItem('email') || '',
+            image: localStorage.getItem('image') || ''
         });
     }, []);
 

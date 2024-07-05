@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login as loginService, logout as logoutService } from '../services/authService';
+import { login as loginService, logout as logoutService, updateUserImage as updateUserImageService } from '../services/authService';
 import { isAuthenticated, removeToken } from '../utils/auth';
 import useUser from '../hooks/useUser';
 
@@ -10,6 +10,7 @@ type User = {
     last_name: string;
     first_name: string;
     email: string;
+    image?: string;
 }
 
 // Définir le type LoginData pour typer les données de connexion
@@ -37,6 +38,7 @@ export default function useAuth() {
                 last_name: localStorage.getItem('last_name') || '',
                 first_name: localStorage.getItem('first_name') || '',
                 email: localStorage.getItem('email') || '',
+                image: localStorage.getItem('image') || '',
             });
         }
     }, [auth, setUser]);
@@ -55,6 +57,7 @@ export default function useAuth() {
                 localStorage.setItem('last_name', response.user.last_name);
                 localStorage.setItem('first_name', response.user.first_name);
                 localStorage.setItem('email', response.user.email);
+                localStorage.setItem('image', response.user.image || '');
 
                 // Mettre à jour l'état utilisateur
                 setUser(response.user);
@@ -64,6 +67,21 @@ export default function useAuth() {
             }
         } catch (error) {
             console.error('Login failed:', error);
+            throw error;
+        }
+    }
+
+    // Mettre à jour la photo de profil de l'utilisateur
+    const updateUserImage = async (dataImage: FormData) => {
+        try {
+            const response = await updateUserImageService(dataImage);
+            setUser((prevUser) => ({
+                ...prevUser,
+                image: response.image,
+            }));
+            localStorage.setItem('image', response.image);
+        } catch (error) {
+            console.error('Update user image failed:', error);
             throw error;
         }
     }
@@ -79,6 +97,7 @@ export default function useAuth() {
                 last_name: '',
                 first_name: '',
                 email: '',
+                image: '',
             });
             navigate('/login');
         } catch (error) {
@@ -92,5 +111,6 @@ export default function useAuth() {
         user,
         login,
         logout,
+        updateUserImage,
     }
 }

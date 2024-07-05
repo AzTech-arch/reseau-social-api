@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { Heart } from "lucide-react";
-import useAuth from '../hooks/useAuth'
+import useAuth from '../hooks/useAuth';
 import { FaHeart } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Textarea } from "../components/ui/textarea";
 import { BsHeart, BsChat, BsShare } from "react-icons/bs";
-import { Card, CardContent, CardFooter } from "../components/ui/card"
-import { Camera, Pencil, MoreHorizontal, Search } from "lucide-react"
+import { Card, CardContent, CardFooter } from "../components/ui/card";
+import { Camera, Pencil, MoreHorizontal, Search } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "../components/ui/avatar";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/ui/tabs";
-
 
 const contacts = [
     { name: 'Rahim Fayasee J-w', friendsInCommon: 123, avatar: 'https://via.placeholder.com/150' },
@@ -22,27 +21,29 @@ const contacts = [
     { name: 'Koureiche Aly', friendsInCommon: 63, avatar: 'https://via.placeholder.com/150' },
 ];
 
-
 export default function Profil() {
-    /**
-     * ! STATE (état, données) de l'application
-     */
-    const { user } = useAuth()
+    const { user, updateUserImage } = useAuth();
 
     const [showComments, setShowComments] = useState(false);
-
-    /**
-     * ! COMPORTEMENT (méthodes, fonctions) de l'application
-     */
 
     const toggleComments = () => {
         setShowComments(!showComments);
     };
 
+    const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files[0]) {
+            const formData = new FormData();
+            formData.append('image', event.target.files[0]);
 
-    /**
-    * ! AFFICHAGE (render) de l'application
-    */
+            try {
+                await updateUserImage(formData);
+                // Handle success (e.g., show a message, refresh profile image, etc.)
+            } catch (error) {
+                console.error('Failed to update user image:', error);
+            }
+        }
+    };
+
     return (
         <>
             <div className="relative min-h-screen w-full ">
@@ -50,21 +51,20 @@ export default function Profil() {
                 <Navbar />
                 <div className="h-full">
                     <div className="relative h-80 bg-cover bg-center cursor-pointer" style={{ backgroundImage: `url('${`https://via.placeholder.com/500x300`}')` }} >
-                        <Button className="absolute bottom-4 right-4 bg-cyan-700" >Changer la photo de couverture</Button>
-                        <input type="file" style={{ display: 'none' }} />
+                        <Button className="absolute bottom-4 right-4 bg-cyan-700" onClick={() => document.getElementById('coverPhotoInput')?.click()}>Changer la photo de couverture</Button>
+                        <input id="coverPhotoInput" type="file" style={{ display: 'none' }} onChange={handleImageChange} />
                     </div>
                     <div className="container mx-auto px-4 py-2">
                         <div className="flex items-center">
-                            <div className="relative w-32 h-32 -mt-16 border-4 border-white rounded-full cursor-pointer" >
+                            <div className="relative w-32 h-32 -mt-16 border-4 border-white rounded-full cursor-pointer" onClick={() => document.getElementById('profilePhotoInput')?.click()}>
                                 <Avatar className="w-32 h-32 -mt-1 border-4 border-white rounded-full">
-                                    <AvatarImage src="" alt="User" className="w-full h-full rounded-full" />
+                                    <AvatarImage src={user.image || ''} alt="User" className="w-full h-full rounded-full" />
                                     <AvatarFallback>CA</AvatarFallback>
                                 </Avatar>
-                                <button className="absolute bottom-0 right-0 bg-blue-700 rounded-full p-1.5 text-white hover:bg-blue-600"  >
+                                <button className="absolute bottom-0 right-0 bg-blue-700 rounded-full p-1.5 text-white hover:bg-blue-600" onClick={() => document.getElementById('profilePhotoInput')?.click()}>
                                     <Camera size={16} />
                                 </button>
-
-                                <input type="file" style={{ display: 'none' }} />
+                                <input id="profilePhotoInput" type="file" style={{ display: 'none' }} onChange={handleImageChange} />
                             </div>
 
                             <div className="ml-4">
@@ -72,13 +72,13 @@ export default function Profil() {
                                 <p className="text-gray-600">402 ami(e)s</p>
                             </div>
                             <div className="ml-auto flex space-x-2">
-                                <Button variant="outline"  >
+                                <Button variant="outline">
                                     <Pencil className="mr-2 h-4 w-4" /> Modifier le profil
                                 </Button>
                             </div>
                         </div>
                         <Tabs defaultValue="Mes publications" className="mt-6">
-                            <TabsList className="flex space-x-4  ">
+                            <TabsList className="flex space-x-4">
                                 <TabsTrigger value="Mes publications" className="py-2 px-4">Mes publications</TabsTrigger>
                                 <TabsTrigger value="amies" className="py-2 px-4">Ami(e)s</TabsTrigger>
                                 <TabsTrigger value="photos" className="py-2 px-4">Photos</TabsTrigger>
@@ -87,7 +87,6 @@ export default function Profil() {
                             <TabsContent value="Mes publications" className="ml-52 mr-52">
                                 <Card className="mb-4 max-w-full p-4 shadow">
                                     <div className="flex items-start justify-between p-4">
-
                                         <div className="flex items-center space-x-4">
                                             <Avatar className="w-10 h-10 shadow">
                                                 <AvatarImage src="" alt="Company Logo" />
@@ -98,21 +97,18 @@ export default function Profil() {
                                                 <p className="text-xs text-gray-500">4 h · <span className="inline-block"><svg xmlns="http://www.w3.org/2000/svg" className="inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" /></svg></span></p>
                                             </div>
                                         </div>
-
                                         <div className="flex items-center space-x-2">
                                             <Button variant="ghost">
                                                 <MoreHorizontal className="w-5 h-5 text-black" />
                                             </Button>
                                         </div>
                                     </div>
-
                                     <CardContent className="p-4">
                                         <p className="text-base text-muted-foreground mb-3">
                                             Experience the future of achievement with digital credentialing! As this field skyrockets, the ease of issuing, sharing, and verifying credentials has never been more crucial...
                                         </p>
                                         <img src="https://via.placeholder.com/500x300" alt="Post" className="w-full rounded-lg" />
                                     </CardContent>
-
                                     <div className="flex justify-between items-center px-4 mb-2">
                                         <div className="flex items-center space-x-2 text-sm text-gray-500">
                                             <FaHeart className="w-5 h-5 text-cyan-700" />
@@ -120,7 +116,6 @@ export default function Profil() {
                                         </div>
                                         <p className="ml-2">1 commentaire</p>
                                     </div>
-
                                     <CardFooter className="flex justify-between items-center border-t pt-3 pb-0">
                                         <Button variant="ghost" className="flex items-center space-x-2 w-full">
                                             <BsHeart className="w-5 h-5" />
@@ -135,7 +130,6 @@ export default function Profil() {
                                             <p>Republier</p>
                                         </Button>
                                     </CardFooter>
-
                                     {showComments && (
                                         <div className="border-t mt-2 pt-2">
                                             <div className="bg-white p-2 rounded-lg mb-2 shadow">
@@ -144,7 +138,6 @@ export default function Profil() {
                                                         <AvatarImage className="w-8 h-8 rounded-full" src="" />
                                                         <AvatarFallback>UA</AvatarFallback>
                                                     </Avatar>
-
                                                     <div className="flex items-center">
                                                         <span className="text-sm font-semibold leading-7 text-black mr-2">Cousema Anjary</span>
                                                         <span className="text-gray-500 text-sm">55 min</span>
@@ -158,18 +151,13 @@ export default function Profil() {
                                                     </Button>
                                                     <p className="text-sm text-gray-500 ml-4">12 likes</p>
                                                 </div>
-
                                             </div>
                                             <div className="flex items-center space-x-4 mb-4 mt-4">
                                                 <Avatar className="shadow">
                                                     <AvatarImage src="" alt="Votre Avatar" />
                                                     <AvatarFallback>AV</AvatarFallback>
                                                 </Avatar>
-                                                <Textarea
-                                                    placeholder="Écrivez un commentaire..."
-                                                    className="flex-1 bg-gray-200 outline-none"
-                                                    rows={1}
-                                                />
+                                                <Textarea placeholder="Écrivez un commentaire..." className="flex-1 bg-gray-200 outline-none" rows={1} />
                                                 <Button className="bg-cyan-700 text-white">Envoyer</Button>
                                             </div>
                                         </div>
