@@ -9,9 +9,16 @@ import { LogOut, Settings, User, MessageSquareMore, Search, Bell } from "lucide-
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu"
 
 
-const Navbar = () => {
+export default function Navbar() {
+    /**
+     * ! STATE (état, données) de l'application
+     */
     const navigate = useNavigate()
     const { user, logout } = useAuth()
+
+    /**
+     * ! COMPORTEMENT (méthodes, fonctions) de l'application
+     */
 
     const handleLogout = async () => {
         try {
@@ -26,7 +33,9 @@ const Navbar = () => {
     }
 
 
-
+    /**
+     * ! AFFICHAGE (render) de l'application
+     */
     return (
         <nav className="bg-white p-4 shadow sticky top-0 z-50">
             <div className="container-fluid mx-20    flex justify-between items-center">
@@ -120,5 +129,3 @@ const Navbar = () => {
         </nav>
     );
 };
-
-export default Navbar;
