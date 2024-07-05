@@ -1,31 +1,19 @@
 import api from './apiConfig';
 
-// Définir les types des données du formulaire
-type RegisterProps = {
-    last_name: string;
-    first_name: string;
-    email: string;
-    password: string;
-};
+// Définir les types Register pour typer les données d'inscription
+type RegisterProps = { last_name: string, first_name: string, email: string, password: string }
 
-type LoginProps = {
-    email: string;
-    password: string;
-};
+// Définir le type Login pour typer les données de connexion
+type LoginProps = { email: string, password: string }
 
 // Définir le type User pour typer les données utilisateur
-type User = {
-    id: string;
-    last_name: string;
-    first_name: string;
-    email: string;
-};
+type User = { id: string, last_name: string, first_name: string, email: string }
 
 // Définir le type LoginResponse pour typer la réponse de connexion
-type LoginResponse = {
-    token: string;
-    user: User;
-};
+type LoginResponse = { token: string, user: User }
+
+
+
 
 // Inscrire un nouvel utilisateur
 export const register = async (dataRegister: RegisterProps): Promise<void> => {
