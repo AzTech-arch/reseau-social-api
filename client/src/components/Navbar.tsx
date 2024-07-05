@@ -1,16 +1,12 @@
-import logo from '../assets/images/logo.png'
+import { Button } from './ui/button'
 import useAuth from '../hooks/useAuth'
+import logo from '../assets/images/logo.png'
 import { Input } from "../components/ui/input"
 import { Link, useNavigate } from 'react-router-dom'
 import { Avatar, AvatarImage, AvatarFallback } from "../components/ui/avatar"
+import { Tooltip, TooltipTrigger, TooltipProvider } from "../components/ui/tooltip";
 import { LogOut, Settings, User, MessageSquareMore, Search, Bell } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu"
-import { Button } from './ui/button'
-import { Tooltip, TooltipTrigger, TooltipProvider } from "../components/ui/tooltip";
-
-
-
-
 
 
 const Navbar = () => {
