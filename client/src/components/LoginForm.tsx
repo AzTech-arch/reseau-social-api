@@ -2,7 +2,7 @@ import { z } from "zod"
 import { useState } from "react"
 import useAuth from '../hooks/useAuth'
 import { Button } from "./ui/button"
-import { Link,useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Eye, EyeOff } from "lucide-react"
 import { Input } from "../components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -24,9 +24,10 @@ export default function LoginForm() {
     /**
      * ! STATE (état, données) de l'application
      */
-    const navigate = useNavigate()
     const { login } = useAuth()
-    const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate()
+    const [showPassword, setShowPassword] = useState(false)
+
     const form = useForm<FormSchemaType>({
         resolver: zodResolver(formSchema),
         defaultValues: {
