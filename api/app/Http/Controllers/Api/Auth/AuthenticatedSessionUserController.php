@@ -35,7 +35,8 @@ class AuthenticatedSessionUserController extends Controller
 
     public function destroy()
     {
-        // Renvoie une réponse JSON avec un message de succès
+        Auth::user()->tokens()->delete();
+
         return response()->json([
             'message' => 'User logged out successfully',
         ], 200);
