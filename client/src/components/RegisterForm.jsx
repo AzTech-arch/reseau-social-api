@@ -4,6 +4,7 @@ import { Button } from "./ui/button"
 import { FcGoogle } from "react-icons/fc"
 import { Eye, EyeOff } from "lucide-react"
 import { Input } from "./ui/input"
+import { register } from '../services/authService'
 import { Link, useNavigate } from "react-router-dom"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -50,7 +51,9 @@ export default function RegisterForm() {
         }
 
         try {
-           console.log(dataRegister)
+            await register(dataRegister)
+            // Inscription réussie, rediriger vers la page de connexion
+            navigate('/login')
 
         } catch (error) {
             toast.error('Une erreur est survenue lors de l\'inscription');
