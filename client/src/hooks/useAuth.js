@@ -45,9 +45,9 @@ export default function useAuth() {
 
                 // Stocker les informations de l'utilisateur dans le stockage local
                 setUser({
-                    userId: localStorage.getItem('id'),
-                    firstname: localStorage.getItem('first_name'),
-                    lastname: localStorage.getItem('last_name'),
+                    id: localStorage.getItem('id'),
+                    first_name: localStorage.getItem('first_name'),
+                    last_name: localStorage.getItem('last_name'),
                     email: localStorage.getItem('email'),
                 });
             }

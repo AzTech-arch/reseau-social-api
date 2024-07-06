@@ -1,6 +1,4 @@
-import { FC } from "react";
 import { Button } from "./ui/button"
-import useAuth from '../hooks/useAuth'
 import { Link } from "react-router-dom"
 import { LiaUserFriendsSolid } from "react-icons/lia";
 import SidebarToggleButton from "./SidebarToggleButton";
@@ -14,7 +12,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
     /**
      * ! STATE (état, données) de l'application
      */
-    const { user } = useAuth()
+    
 
 
     /**
@@ -35,7 +33,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                             <AvatarImage src="" alt="@shadcn" />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
-                        {isOpen && <p className="text-sm font-semibold leading-7 text-black">{user.first_name}</p>}
+                        {isOpen && <p className="text-sm font-semibold leading-7 text-black">Cousema Anjary</p>}
                     </Button>
                     <SidebarToggleButton isOpen={isOpen} toggleSidebar={toggleSidebar} />
                 </div>

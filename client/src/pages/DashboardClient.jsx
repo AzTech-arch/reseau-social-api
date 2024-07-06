@@ -19,7 +19,7 @@ export default function DashboardClient() {
         <div className="relative min-h-screen w-full">
             {/* Background Gradient */}
             <div className="absolute bg-fixed inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
-            
+
             <Navbar />
 
             <div className="flex flex-1 mt-10 h-full overflow-x-hidden">
@@ -34,8 +34,8 @@ export default function DashboardClient() {
                     <div className="flex space-x-2 mb-4">
                         <StoryCarousel />
                     </div>
-                        <CreatePost />
-                        <Post />
+                    <CreatePost />
+                    <Post />
                 </main>
 
                 {/* Right Sidebar */}
