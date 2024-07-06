@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\Auth\AuthenticatedSessionUserController;
-use App\Http\Controllers\Api\Auth\RegisterController;
-use App\Http\Controllers\Api\Frontend\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,13 +17,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-// Route protected
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('logout', [AuthenticatedSessionUserController::class, 'destroy']);
-    Route::post('updateUserImage', [DashboardController::class, 'updateUserImage']);
-});
-
-// Route public 
-Route::post('register', [RegisterController::class, 'store']);
-Route::post('login', [AuthenticatedSessionUserController::class, 'store']);;
