@@ -22,12 +22,11 @@ export default function useAuth() {
         if (auth) {
             // Charger les informations de l'utilisateur depuis le stockage local
             setUser({
-                firstname: localStorage.getItem('firstname'),
-                lastname: localStorage.getItem('lastname'),
+                id: localStorage.getItem('id'),
+                first_name: localStorage.getItem('first_name'),
+                last_name: localStorage.getItem('last_name'),
                 email: localStorage.getItem('email'),
-                image: localStorage.getItem('image'),
-                coverPhoto: localStorage.getItem('coverPhoto'),
-                userId: localStorage.getItem('userId')
+
             });
         }
 
@@ -46,12 +45,10 @@ export default function useAuth() {
 
                 // Stocker les informations de l'utilisateur dans le stockage local
                 setUser({
-                    firstname: localStorage.getItem('firstname'),
-                    lastname: localStorage.getItem('lastname'),
+                    userId: localStorage.getItem('id'),
+                    firstname: localStorage.getItem('first_name'),
+                    lastname: localStorage.getItem('last_name'),
                     email: localStorage.getItem('email'),
-                    image: localStorage.getItem('image'),
-                    coverPhoto: localStorage.getItem('coverPhoto'),
-                    userId: localStorage.getItem('userId')
                 });
             }
 
@@ -62,65 +59,65 @@ export default function useAuth() {
     }
 
     // Mettre à jour les informations de l'utilisateur
-    const updateUser = async (userData) => {
-        try {
-            // Appeler le service de mise à jour de l'utilisateur
-            const response = await updateUserService(userData)
+    // const updateUser = async (userData) => {
+    //     try {
+    //         // Appeler le service de mise à jour de l'utilisateur
+    //         const response = await updateUserService(userData)
 
-            if (response) {
-                // Mettre à jour les informations de l'utilisateur dans le stockage local
-                localStorage.setItem('firstname', userData.firstname)
-                localStorage.setItem('lastname', userData.lastname)
-                localStorage.setItem('email', userData.email)
+    //         if (response) {
+    //             // Mettre à jour les informations de l'utilisateur dans le stockage local
+    //             localStorage.setItem('firstname', userData.firstname)
+    //             localStorage.setItem('lastname', userData.lastname)
+    //             localStorage.setItem('email', userData.email)
 
-                setUser(userData) // Mettre à jour les informations de l'utilisateur
-            }
+    //             setUser(userData) // Mettre à jour les informations de l'utilisateur
+    //         }
 
-        } catch (error) {
-            console.error('Update user failed:', error)
-            throw error;
-        }
-    }
+    //     } catch (error) {
+    //         console.error('Update user failed:', error)
+    //         throw error;
+    //     }
+    // }
 
     // Mettre à jour la photo de profil de l'utilisateur
-    const updateUserPhoto = async (formData) => {
-        try {
-            // Appeler le service de mise à jour de la photo de profil
-            const response = await updateUserPhotoService(formData)
+    // const updateUserPhoto = async (formData) => {
+    //     try {
+    //         // Appeler le service de mise à jour de la photo de profil
+    //         const response = await updateUserPhotoService(formData)
 
-            if (response) {
-                // Mettre à jour la photo de profil de l'utilisateur dans le stockage local
-                localStorage.setItem('image', response.user.image)
+    //         if (response) {
+    //             // Mettre à jour la photo de profil de l'utilisateur dans le stockage local
+    //             localStorage.setItem('image', response.user.image)
 
-                // Mettre à jour la photo de profil de l'utilisateur
-                setUser((prevUser) => ({ ...prevUser, image: response.user.image }))
-            }
+    //             // Mettre à jour la photo de profil de l'utilisateur
+    //             setUser((prevUser) => ({ ...prevUser, image: response.user.image }))
+    //         }
 
-        } catch (error) {
-            console.error('Update user photo failed:', error)
-            throw error
-        }
-    }
+    //     } catch (error) {
+    //         console.error('Update user photo failed:', error)
+    //         throw error
+    //     }
+    // }
 
     // Mettre à jour la photo de couverture de l'utilisateur
-    const updateCoverPhoto = async (formData) => {
-        try {
-            // Appeler le service de mise à jour de la photo de couverture
-            const response = await updateCoverPhotoService(formData)
+    // const updateCoverPhoto = async (formData) => {
+    //     try {
+    //         // Appeler le service de mise à jour de la photo de couverture
+    //         const response = await updateCoverPhotoService(formData)
 
-            if (response) {
-                // Mettre à jour la photo de couverture de l'utilisateur dans le stockage local
-                localStorage.setItem('coverPhoto', response.user.coverPhoto)
+    //         if (response) {
+    //             // Mettre à jour la photo de couverture de l'utilisateur dans le stockage local
+    //             localStorage.setItem('coverPhoto', response.user.coverPhoto)
 
-                // Mettre à jour la photo de couverture de l'utilisateur
-                setUser((prevUser) => ({ ...prevUser, coverPhoto: response.user.coverPhoto }))
-            }
+    //             // Mettre à jour la photo de couverture de l'utilisateur
+    //             setUser((prevUser) => ({ ...prevUser, coverPhoto: response.user.coverPhoto }))
+    //         }
 
-        } catch (error) {
-            console.error('Update cover photo failed:', error)
-            throw error
-        }
-    }
+    //     } catch (error) {
+    //         console.error('Update cover photo failed:', error)
+    //         throw error
+    //     }
+    // }
 
     // Déconnexion de l'utilisateur
     const logout = async () => {
@@ -129,7 +126,7 @@ export default function useAuth() {
             await logoutService()
             removeToken() // Supprimer le token du stockage local
             setAuth(false) // Déconnecter l'utilisateur
-            setUser({ firstname: '', lastname: '', email: '', image: '', coverPhoto: '', userId: '' }) // Réinitialiser les informations de l'utilisateur
+            setUser({ first_name: '', last_name: '', email: '', id: '' }) // Réinitialiser les informations de l'utilisateur
             navigate('/login') // Rediriger vers la page de connexion
         } catch (error) {
             console.error('Logout failed:', error)
@@ -145,9 +142,9 @@ export default function useAuth() {
         user,
         login,
         logout,
-        updateUser,
-        updateUserPhoto,
-        updateCoverPhoto
+        // updateUser,
+        // updateUserPhoto,
+        // updateCoverPhoto
     }
 
 }
