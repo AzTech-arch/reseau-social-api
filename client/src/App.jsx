@@ -1,8 +1,11 @@
-import { Button } from "@/components/ui/button"
+
 import { Route, Routes } from "react-router-dom"
+import PrivateRoute from "./components/routes/PrivateRoute"
+import PublicRoute from "./components/routes/PublicRoute"
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
+import DashboardClient from "./pages/DashboardClient"
 
 
 export default function App() {
@@ -23,13 +26,17 @@ export default function App() {
   return (
     <Routes>
       {/* Public Routes */}
+      <Route element={<PublicRoute />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+      </Route>
 
-      <Route path="/" element={<Home />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
 
       {/* Protected Routes */}
-
+      <Route element={<PrivateRoute />}>
+        <Route path="/friendzy" element={<DashboardClient />} />
+      </Route>
 
 
     </Routes>
