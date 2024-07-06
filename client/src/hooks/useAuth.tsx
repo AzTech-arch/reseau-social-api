@@ -75,14 +75,12 @@ export default function useAuth() {
     const updateUserImage = async (dataImage: FormData) => {
         try {
             const response = await updateUserImageService(dataImage);
-            setUser((prevUser) => ({
-                ...prevUser,
-                image: response.image,
-            }));
-            localStorage.setItem('image', response.image);
+            if (response && response.image) {
+                localStorage.setItem('image', response.image);
+                setUser(prevUser => ({ ...prevUser, image: response.image }));
+            }
         } catch (error) {
-            console.error('Update user image failed:', error);
-            throw error;
+            console.error('Erreur lors de la mise à jour de la photo de profil:', error);
         }
     }
 

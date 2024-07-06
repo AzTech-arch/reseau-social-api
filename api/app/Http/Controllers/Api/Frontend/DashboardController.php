@@ -21,11 +21,11 @@ class DashboardController extends Controller
 
         // Supprimer l'ancienne image si elle existe
         if ($user->image) {
-            Storage::delete($user->image);
+            Storage::disk('public')->delete($user->image);
         }
 
         // Enregistrer la nouvelle image
-        $path = $request->file('image')->store('profile_images');
+        $path = $request->file('image')->store('profile_images', 'public');
 
         // Mettre à jour le chemin de l'image de l'utilisateur
         $user->image = $path;
@@ -34,7 +34,7 @@ class DashboardController extends Controller
         // Retourner une réponse de succès
         return response()->json([
             'message' => 'Photo de profil mise à jour avec succès',
-            'image' => $path
+            'image' => Storage::url($path)
         ], 200);
     }
 }

@@ -12,7 +12,7 @@ type User = { id: string, last_name: string, first_name: string, email: string, 
 // Définir le type LoginResponse pour typer la réponse de connexion
 type LoginResponse = { token: string, user: User }
 
-// Définir le type updateUserImage pour typer la mise à jour de la photo de profil
+// Définir le type UpdateUserImageResponse pour typer la mise à jour de la photo de profil
 type UpdateUserImageResponse = { message: string, image: string }
 
 // Inscrire un nouvel utilisateur
