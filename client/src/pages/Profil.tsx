@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Heart } from "lucide-react";
 import useAuth from '../hooks/useAuth';
 import { FaHeart } from "react-icons/fa";
@@ -23,6 +23,8 @@ const contacts = [
 
 export default function Profil() {
     const { user, updateUserImage } = useAuth();
+    const fileInputRef = useRef(null)
+    const [selectedFile, setSelectedFile] = useState(null)
 
     const [showComments, setShowComments] = useState(false);
 
@@ -30,19 +32,30 @@ export default function Profil() {
         setShowComments(!showComments);
     };
 
-    const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files[0]) {
-            const formData = new FormData();
-            formData.append('image', event.target.files[0]);
+    // Ouvrir le file input pour choisir une photo
+    const handleChangeImage = () => {
+        fileInputRef.current.click()
+    }
 
-            try {
-                await updateUserImage(formData);
-                // Handle success (e.g., show a message, refresh profile image, etc.)
-            } catch (error) {
-                console.error('Failed to update user image:', error);
+    // Mettre à jour la photo de profil
+    const handleFileChange = (e) => {
+        const file = e.target.files[0] // Récupérer le fichier sélectionné
+        setSelectedFile(file) // Mettre à jour le state avec le fichier sélectionné
+
+        const formData = new FormData()
+        formData.append('image', file)
+
+        updateUserImage(formData).then(response => {
+            // Mettre à jour le localStorage avec la nouvelle photo
+            if (response && response.user && response.user.image) {
+                localStorage.setItem('image', response.user.image)
+                window.location.reload()
             }
-        }
-    };
+
+        }).catch(err => {
+            console.error('Erreur lors de la mise à jour de la photo:', err)
+        })
+    }
 
     return (
         <>
@@ -52,19 +65,24 @@ export default function Profil() {
                 <div className="h-full">
                     <div className="relative h-80 bg-cover bg-center cursor-pointer" style={{ backgroundImage: `url('${`https://via.placeholder.com/500x300`}')` }} >
                         <Button className="absolute bottom-4 right-4 bg-cyan-700" onClick={() => document.getElementById('coverPhotoInput')?.click()}>Changer la photo de couverture</Button>
-                        <input id="coverPhotoInput" type="file" style={{ display: 'none' }} onChange={handleImageChange} />
+                        <input id="coverPhotoInput" type="file" style={{ display: 'none' }} />
                     </div>
                     <div className="container mx-auto px-4 py-2">
                         <div className="flex items-center">
-                            <div className="relative w-32 h-32 -mt-16 border-4 border-white rounded-full cursor-pointer" onClick={() => document.getElementById('profilePhotoInput')?.click()}>
+                            <div className="relative w-32 h-32 -mt-16 border-4 border-white rounded-full cursor-pointer" >
                                 <Avatar className="w-32 h-32 -mt-1 border-4 border-white rounded-full">
-                                    <AvatarImage src={user.image || ''} alt="User" className="w-full h-full rounded-full" />
+                                    <AvatarImage src={`http://localhost:8000/${user.image}`} alt="User" className="w-full h-full rounded-full" />
                                     <AvatarFallback>CA</AvatarFallback>
                                 </Avatar>
-                                <button className="absolute bottom-0 right-0 bg-blue-700 rounded-full p-1.5 text-white hover:bg-blue-600" onClick={() => document.getElementById('profilePhotoInput')?.click()}>
+                                <button className="absolute bottom-0 right-0 bg-blue-700 rounded-full p-1.5 text-white hover:bg-blue-600" onClick={handleChangeImage}>
                                     <Camera size={16} />
                                 </button>
-                                <input id="profilePhotoInput" type="file" style={{ display: 'none' }} onChange={handleImageChange} />
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    style={{ display: 'none' }}
+                                    onChange={handleFileChange}
+                                />
                             </div>
 
                             <div className="ml-4">
