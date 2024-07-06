@@ -6,7 +6,7 @@ type User = {
     last_name: string;
     first_name: string;
     email: string;
-    image?: string;
+    image: string;
 };
 
 // Définir l'interface UserContextType pour typer le contexte utilisateur

@@ -24,8 +24,6 @@ const contacts = [
 export default function Profil() {
     const { user, updateUserImage } = useAuth()
     const fileInputRef = useRef<HTMLInputElement>(null)
-    const [selectedFile, setSelectedFile] = useState(null)
-
     const [showComments, setShowComments] = useState(false);
 
     const toggleComments = () => {
@@ -46,9 +44,8 @@ export default function Profil() {
 
             try {
                 const response = await updateUserImage(formData)
-                
-                if (response && response.user && response.user.image) {
-                    localStorage.setItem('image', response.user.image)
+                if (response && response.image) {
+                    localStorage.setItem('image', response.image)
                     window.location.reload()
                 }
             } catch (err) {
@@ -71,7 +68,7 @@ export default function Profil() {
                         <div className="flex items-center">
                             <div className="relative w-32 h-32 -mt-16 border-4 border-white rounded-full cursor-pointer" >
                                 <Avatar className="w-32 h-32 -mt-1 border-4 border-white rounded-full">
-                                <AvatarImage src={`http://localhost:8000/storage/${user.image}`} alt="User" className="w-full h-full rounded-full" />
+                                    <AvatarImage src={`http://localhost:8000${user.image}`} alt="User" className="w-full h-full rounded-full" />
                                     <AvatarFallback>CA</AvatarFallback>
                                 </Avatar>
                                 <button className="absolute bottom-0 right-0 bg-blue-700 rounded-full p-1.5 text-white hover:bg-blue-600" onClick={handleChangeImage}>
@@ -198,7 +195,7 @@ export default function Profil() {
                                         {contacts.map((contact, index) => (
                                             <div key={index} className="flex items-center bg-white text-black p-4 rounded-lg shadow">
                                                 <Avatar className="w-16 h-16 rounded-full mr-4 shadow">
-                                                    <AvatarImage src="" />
+                                                    <AvatarImage src={contact.avatar} />
                                                     <AvatarFallback>AV</AvatarFallback>
                                                 </Avatar>
                                                 <div className="flex-1">

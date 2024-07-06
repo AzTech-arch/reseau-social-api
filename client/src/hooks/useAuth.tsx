@@ -10,7 +10,7 @@ type User = {
     last_name: string;
     first_name: string;
     email: string;
-    image?: string;
+    image: string;
 }
 
 // Définir le type LoginData pour typer les données de connexion
