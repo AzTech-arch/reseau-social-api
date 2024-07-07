@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Frontend;
 use App\Models\Friend;
 use Illuminate\Http\Request;
 use App\Models\FriendRequest;
+use App\Events\FriendRequestSent;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,8 @@ class FriendController extends Controller
             'receiver_id' => $request->receiver_id,
             'status' => 'pending',
         ]);
+
+        broadcast(new FriendRequestSent($friendRequest))->toOthers();
 
         return response()->json($friendRequest, 201);
     }
