@@ -7,6 +7,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import DashboardClient from "./pages/DashboardClient"
 import { UserProvider } from "./contexts/UserContext"
+import Profil from "./pages/Profil"
 
 
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
         {/* Protected Routes */}
         <Route element={<PrivateRoute />}>
           <Route path="/friendzy" element={<DashboardClient />} />
+          <Route path="/friendzy/profil" element={<Profil />} />
         </Route>
 
 
