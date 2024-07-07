@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Frontend\FriendController;
 use App\Http\Controllers\Api\Frontend\DashboardController;
+use App\Http\Controllers\Api\Frontend\FriendRequestController;
 use App\Http\Controllers\Api\Auth\AuthenticatedUserSessionController;
 
 /*
@@ -33,6 +34,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('friend/accept/{id}', [FriendController::class, 'acceptRequest']);
     Route::post('friend/reject/{id}', [FriendController::class, 'rejectRequest']);
     Route::delete('friend/remove/{id}', [FriendController::class, 'removeFriend']);
+
+    Route::get('/user/{id}', [AuthenticatedUserSessionController::class, 'show']);
+    Route::post('/friend-request', [FriendRequestController::class, 'store']);
 });
 
 // Route public 

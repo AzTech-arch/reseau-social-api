@@ -46,6 +46,16 @@ class AuthenticatedUserSessionController extends Controller
         ], 401);
     }
 
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        $isFriend = auth()->user()->friends()->where('friend_id', $id)->exists();
+        return response()->json([
+            'user' => $user,
+            'isFriend' => $isFriend,
+        ]);
+    }
+
     public function destroy(Request $request)
     {
         // Récupérer l'utilisateur authentifié
