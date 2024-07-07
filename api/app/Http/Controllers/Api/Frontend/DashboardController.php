@@ -42,10 +42,10 @@ class DashboardController extends Controller
         $user = $request->user();
 
         // Stocker l'image dans le dossier public
-        $imagePath = $request->file('image_cover')->store('cover_images', 'public');
+        $imagePath = $request->file('image_cover')->store('image_covers', 'public');
 
         // Mettre à jour le chemin de l'image dans la base de données
-        $user->cover_image = $imagePath;
+        $user->image_cover = $imagePath;
 
         // Sauvegarder les modifications
         $user->save();
