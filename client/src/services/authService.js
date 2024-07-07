@@ -37,7 +37,7 @@ export const login = async (dataLogin) => {
 }
 
 // Mettre à jour la photo de profil de l'utilisateur
-export const updateUserPhoto = async (dataImage) => {
+export const updateUserImage = async (dataImage) => {
     try {
         // Appel à l'API pour mettre à jour la photo de profil de l'utilisateur
         const response = await api.post('/updateUserImage', dataImage, { headers: { 'Content-Type': 'multipart/form-data' } })

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login as loginService, logout as logoutService, } from '../services/authService';
+import { login as loginService, logout as logoutService, updateUserImage as updateUserImageService, } from '../services/authService';
 import { isAuthenticated, removeToken } from '../utils/auth';
 import useUser from '../hooks/useUser';
 
@@ -26,6 +26,7 @@ export default function useAuth() {
                 first_name: localStorage.getItem('first_name'),
                 last_name: localStorage.getItem('last_name'),
                 email: localStorage.getItem('email'),
+                image: localStorage.getItem('image'),
 
             });
         }
@@ -49,6 +50,7 @@ export default function useAuth() {
                     first_name: localStorage.getItem('first_name'),
                     last_name: localStorage.getItem('last_name'),
                     email: localStorage.getItem('email'),
+                    image: localStorage.getItem('image'),
                 });
             }
 
@@ -80,24 +82,24 @@ export default function useAuth() {
     // }
 
     // Mettre à jour la photo de profil de l'utilisateur
-    // const updateUserPhoto = async (formData) => {
-    //     try {
-    //         // Appeler le service de mise à jour de la photo de profil
-    //         const response = await updateUserPhotoService(formData)
+    const updateUserImage = async (dataImage) => {
+        try {
+            // Appeler le service de mise à jour de la photo de profil
+            const response = await updateUserImageService(dataImage)
 
-    //         if (response) {
-    //             // Mettre à jour la photo de profil de l'utilisateur dans le stockage local
-    //             localStorage.setItem('image', response.user.image)
+            if (response) {
+                // Mettre à jour la photo de profil de l'utilisateur dans le stockage local
+                localStorage.setItem('image', response.user.image)
 
-    //             // Mettre à jour la photo de profil de l'utilisateur
-    //             setUser((prevUser) => ({ ...prevUser, image: response.user.image }))
-    //         }
+                // Mettre à jour la photo de profil de l'utilisateur
+                setUser((prevUser) => ({ ...prevUser, image: response.user.image }))
+            }
 
-    //     } catch (error) {
-    //         console.error('Update user photo failed:', error)
-    //         throw error
-    //     }
-    // }
+        } catch (error) {
+            console.error('Update user photo failed:', error)
+            throw error
+        }
+    }
 
     // Mettre à jour la photo de couverture de l'utilisateur
     // const updateCoverPhoto = async (formData) => {
@@ -126,7 +128,7 @@ export default function useAuth() {
             await logoutService()
             removeToken() // Supprimer le token du stockage local
             setAuth(false) // Déconnecter l'utilisateur
-            setUser({ first_name: '', last_name: '', email: '', id: '' }) // Réinitialiser les informations de l'utilisateur
+            setUser({ first_name: '', last_name: '', email: '', id: '', image: '' }) // Réinitialiser les informations de l'utilisateur
             navigate('/login') // Rediriger vers la page de connexion
         } catch (error) {
             console.error('Logout failed:', error)
@@ -143,7 +145,7 @@ export default function useAuth() {
         login,
         logout,
         // updateUser,
-        // updateUserPhoto,
+        updateUserImage,
         // updateCoverPhoto
     }
 
