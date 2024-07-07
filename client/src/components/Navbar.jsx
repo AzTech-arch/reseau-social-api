@@ -1,4 +1,5 @@
 import { Button } from './ui/button'
+import { useState } from 'react'
 import useAuth from '../hooks/useAuth'
 import logo from '../assets/images/logo.png'
 import { Input } from "./ui/input"
@@ -16,6 +17,7 @@ export default function Navbar() {
 
     const navigate = useNavigate()
     const { user, logout } = useAuth()
+    const [searchTerm, setSearchTerm] = useState('');
 
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
@@ -33,6 +35,11 @@ export default function Navbar() {
         }
     }
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        navigate(`/search?query=${searchTerm}`);
+    }
+
 
     /**
      * ! AFFICHAGE (render) de l'application
@@ -46,10 +53,16 @@ export default function Navbar() {
                         <img src={logo} alt="logo" className="w-24 h-auto object-contain" />
                     </Link>
 
-                    <div className="relative">
-                        <Input type="text" placeholder="Rechercher sur Friendzy" className=" bg-white text-slate-600 pl-10 pr-4 py-2 shadow-sm " />
+                    <form onSubmit={handleSearch} className="relative">
+                        <Input
+                            type="text"
+                            placeholder="Rechercher sur Friendzy"
+                            className="bg-white text-slate-600 pl-10 pr-4 py-2 shadow-sm"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
                         <Search className="absolute left-3 top-2.5 text-gray-400" size={20} />
-                    </div>
+                    </form>
                 </div>
 
                 {/* Navigation Icons */}
