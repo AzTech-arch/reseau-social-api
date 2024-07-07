@@ -36,6 +36,18 @@ export const login = async (dataLogin) => {
     }
 }
 
+// Mettre à jour la photo de profil de l'utilisateur
+export const updateUserPhoto = async (dataImage) => {
+    try {
+        // Appel à l'API pour mettre à jour la photo de profil de l'utilisateur
+        const response = await api.post('/updateUserImage', dataImage, { headers: { 'Content-Type': 'multipart/form-data' } })
+        return response.data // Retourner les données de la réponse de l'API
+
+    } catch (error) {
+        console.error('Erreur lors de la mise à jour de la photo de profil:', error)
+    }
+}
+
 // Déconnecter un utilisateur
 export const logout = async () => {
     try {

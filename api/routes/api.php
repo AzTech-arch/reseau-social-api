@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Frontend\DashboardController;
 use App\Http\Controllers\Api\Auth\AuthenticatedUserSessionController;
 
 /*
@@ -22,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthenticatedUserSessionController::class, 'destroy']);
-    
+    Route::post('updateUserImage', [DashboardController::class, 'updateUserImage']);
 });
 
 // Route public 
