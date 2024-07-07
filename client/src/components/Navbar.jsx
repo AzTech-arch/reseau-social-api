@@ -90,7 +90,7 @@ export default function Navbar() {
 
                                         <Button variant="outline" className="relative h-10 w-10 rounded-full">
                                             <Avatar className='h-10 w-10'>
-                                                <AvatarImage src="" alt='avatar' />
+                                                <AvatarImage src={`http://localhost:8000/storage/${user.image}`} alt='avatar' />
                                                 <AvatarFallback className='bg-transparent'>CN</AvatarFallback>
                                             </Avatar>
                                         </Button>

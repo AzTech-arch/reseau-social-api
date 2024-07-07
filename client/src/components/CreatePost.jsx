@@ -37,7 +37,7 @@ export default function CreatePost() {
         <div className="bg-white p-4 rounded-lg shadow mb-4">
             <div className="flex items-center space-x-4">
                 <Avatar className="w-10 h-10 shadow">
-                    <AvatarImage src="" alt="User Avatar" />
+                    <AvatarImage src={`http://localhost:8000/storage/${user.image}`} alt="User Avatar" />
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
 

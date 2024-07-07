@@ -31,7 +31,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                 <div className="flex items-center justify-between">
                     <Button variant="secondary" className="flex items-center space-x-2 w-full justify-start p-2 py-7 mb-2">
                         <Avatar className="w-10 h-10 shadow">
-                            <AvatarImage src="" alt="@shadcn" />
+                            <AvatarImage src={`http://localhost:8000/storage/${user.image}`} alt="@shadcn" />
                             <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
                         {isOpen && <p className="text-sm font-semibold leading-7 text-black">{user.first_name}</p>}

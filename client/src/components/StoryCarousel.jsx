@@ -13,13 +13,12 @@ const stories = [
 
 export function StoryCarousel() {
     return (
-        <Carousel opts={{ align: "start", }} className="w-full shadow-card">
-
+        <Carousel opts={{ align: "start" }} className="w-full shadow-card">
             <CarouselContent>
                 {stories.map((story, index) => (
                     <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
-                        <Card className="p-0 ">
-                            <CardContent className="flex aspect-square items-center justify-center px-0 ">
+                        <Card className="p-0 h-80">
+                            <CardContent className="flex flex-col h-full justify-between px-0">
                                 <Story {...story} />
                             </CardContent>
                         </Card>
