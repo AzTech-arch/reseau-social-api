@@ -27,7 +27,7 @@ export default function useAuth() {
                 last_name: localStorage.getItem('last_name'),
                 email: localStorage.getItem('email'),
                 image: localStorage.getItem('image'),
-                cover_image: localStorage.getItem('cover_image')
+                image_cover: localStorage.getItem('image_cover')
 
             });
         }
@@ -52,7 +52,7 @@ export default function useAuth() {
                     last_name: localStorage.getItem('last_name'),
                     email: localStorage.getItem('email'),
                     image: localStorage.getItem('image'),
-                    cover_image: localStorage.getItem('cover_image')
+                    image_cover: localStorage.getItem('image_cover')
                 });
             }
 
@@ -111,10 +111,10 @@ export default function useAuth() {
 
             if (response) {
                 // Mettre à jour la photo de couverture de l'utilisateur dans le stockage local
-                localStorage.setItem('cover_image', response.user.cover_image)
+                localStorage.setItem('image_cover', response.user.image_cover)
 
                 // Mettre à jour la photo de couverture de l'utilisateur
-                setUser((prevUser) => ({ ...prevUser, cover_image: response.user.cover_image }))
+                setUser((prevUser) => ({ ...prevUser, image_cover: response.user.image_cover }))
             }
 
         } catch (error) {
@@ -130,7 +130,7 @@ export default function useAuth() {
             await logoutService()
             removeToken() // Supprimer le token du stockage local
             setAuth(false) // Déconnecter l'utilisateur
-            setUser({ first_name: '', last_name: '', email: '', id: '', image: '', cover_image: '' }) // Réinitialiser les informations de l'utilisateur
+            setUser({ first_name: '', last_name: '', email: '', id: '', image: '', image_cover: '' }) // Réinitialiser les informations de l'utilisateur
             navigate('/login') // Rediriger vers la page de connexion
         } catch (error) {
             console.error('Logout failed:', error)

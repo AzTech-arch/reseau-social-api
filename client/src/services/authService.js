@@ -72,7 +72,7 @@ export const logout = async () => {
         localStorage.removeItem('last_name')
         localStorage.removeItem('email')
         localStorage.removeItem('image')
-        localStorage.removeItem('cover_image')
+        localStorage.removeItem('image_cover')
 
     } catch (error) {
         console.error('Erreur lors de la déconnexion:', error)

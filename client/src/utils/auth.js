@@ -11,5 +11,5 @@ export const removeToken = () => {
     localStorage.removeItem('first_name');
     localStorage.removeItem('email');
     localStorage.removeItem('image');
-    localStorage.removeItem('cover_image');
+    localStorage.removeItem('image_cover');
 }
