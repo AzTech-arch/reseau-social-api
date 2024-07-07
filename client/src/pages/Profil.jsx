@@ -22,9 +22,10 @@ const contacts = [
 ];
 
 export default function Profil() {
-    const { user, updateUserImage } = useAuth()
+    const { user, updateUserImage, updateCoverImage } = useAuth()
 
     const fileInputRef = useRef(null);
+    const coverFileInputRef = useRef(null)
     const [selectedFile, setSelectedFile] = useState(null)
     const [showComments, setShowComments] = useState(false);
 
@@ -35,6 +36,11 @@ export default function Profil() {
     // Ouvrir le file input pour choisir une photo
     const handleChangeImage = () => {
         fileInputRef.current.click()
+    }
+
+    // Ouvrir le file input pour choisir une photo de couverture
+    const handleChangeCoverImage = () => {
+        coverFileInputRef.current.click()
     }
 
     const handleFileChange = async (e) => {
@@ -55,15 +61,39 @@ export default function Profil() {
         }
     };
 
+    const handleCoverFileChange = async (e) => {
+        const file = e.target.files[0] // Récupérer le fichier sélectionné
+        setSelectedFile(file) // Mettre à jour le state avec le fichier sélectionné
+
+        const formData = new FormData() // Créer un objet FormData
+        formData.append('image_cover', file) // Ajouter le fichier à l'objet FormData
+
+        try {
+            const response = await updateCoverImage(formData);
+            if (response && response.image_cover) {
+                localStorage.setItem('image_cover', response.image_cover);
+                setUser((prevUser) => ({ ...prevUser, image_cover: response.image_cover }));
+            }
+        } catch (error) {
+            console.error('Erreur lors de la mise à jour de la photo:', error);
+        }
+    };
+
     return (
         <>
             <div className="relative min-h-screen w-full ">
                 <div className="absolute bg-fixed inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
                 <Navbar />
                 <div className="h-full">
-                    <div className="relative h-80 bg-cover bg-center cursor-pointer" style={{ backgroundImage: `url('${`https://via.placeholder.com/500x300`}')` }} >
-                        <Button className="absolute bottom-4 right-4 bg-cyan-700" onClick={() => document.getElementById('coverPhotoInput')?.click()}>Changer la photo de couverture</Button>
-                        <input id="coverPhotoInput" type="file" style={{ display: 'none' }} />
+                    <div className="relative h-80 bg-cover bg-center cursor-pointer" style={{ backgroundImage: `url('${`http://localhost:8000/storage/${user.image_cover}`}')` }} >
+                        <Button className="absolute bottom-4 right-4 bg-cyan-700" onClick={handleChangeCoverImage}>Changer la photo de couverture</Button>
+                        <input
+                            id="coverPhotoInput"
+                            ref={coverFileInputRef}
+                            type="file"
+                            style={{ display: 'none' }}
+                            onChange={handleCoverFileChange}
+                        />
                     </div>
                     <div className="container mx-auto px-4 py-2">
                         <div className="flex items-center">

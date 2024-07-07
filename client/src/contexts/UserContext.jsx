@@ -13,6 +13,7 @@ export const UserProvider = ({ children }) => {
         last_name: '',
         email: '',
         image: '',
+        image_cover: ''
     });
 
     useEffect(() => {
@@ -23,6 +24,7 @@ export const UserProvider = ({ children }) => {
             last_name: localStorage.getItem('last_name') || '',
             email: localStorage.getItem('email') || '',
             image: localStorage.getItem('image') || '',
+            image_cover: localStorage.getItem('cover_image') || ''
         };
         // Mettre à jour les données utilisateur dans le contexte
         setUser(userData)

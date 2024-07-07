@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthenticatedUserSessionController::class, 'destroy']);
     Route::post('updateUserImage', [DashboardController::class, 'updateUserImage']);
+    Route::post('updateCoverImage', [DashboardController::class, 'updateCoverImage']);
 });
 
 // Route public 

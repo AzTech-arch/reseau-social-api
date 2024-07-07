@@ -34,6 +34,7 @@ class AuthenticatedUserSessionController extends Controller
                     'first_name' => $user->first_name,
                     'email' => $user->email,
                     'image' => $user->image,
+                    'cover_image' => $user->cover_image,
                 ],
                 'token' => $token,
             ], 200);

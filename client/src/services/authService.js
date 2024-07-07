@@ -28,6 +28,7 @@ export const login = async (dataLogin) => {
             localStorage.setItem('first_name', response.data.user.first_name);
             localStorage.setItem('email', response.data.user.email);
             localStorage.setItem('image', response.data.user.image);
+            localStorage.setItem('cover_image', response.data.user.cover_image);
         }
         return response.data // Retourner les données de la réponse de l'API
 
@@ -48,18 +49,30 @@ export const updateUserImage = async (dataImage) => {
     }
 }
 
+// Mettre à jour la photo de couverture de l'utilisateur
+export const updateCoverImage = async (dataImageCover) => {
+    try {
+        // Appel à l'API pour mettre à jour la photo de couverture de l'utilisateur
+        const response = await api.post('/updateCoverImage', dataImageCover, { headers: { 'Content-Type': 'multipart/form-data' } })
+        return response.data // Retourner les données de la réponse de l'API
+
+    } catch (error) {
+        console.error('Erreur lors de la mise à jour de la photo de couverture:', error)
+    }
+};
+
 // Déconnecter un utilisateur
 export const logout = async () => {
     try {
         await api.post('/logout');
         // Supprimer les données utilisateur du stockage local
-        localStorage.removeItem('userToken')
-        localStorage.removeItem('userId')
-        localStorage.removeItem('firstname')
-        localStorage.removeItem('lastname')
+        localStorage.removeItem('token')
+        localStorage.removeItem('id')
+        localStorage.removeItem('first_name')
+        localStorage.removeItem('last_name')
         localStorage.removeItem('email')
         localStorage.removeItem('image')
-        localStorage.removeItem('coverPhoto')
+        localStorage.removeItem('cover_image')
 
     } catch (error) {
         console.error('Erreur lors de la déconnexion:', error)
