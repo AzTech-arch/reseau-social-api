@@ -34,7 +34,7 @@ export default function Profil() {
 
     // Ouvrir le file input pour choisir une photo
     const handleChangeImage = () => {
-        fileInputRef.current?.click();
+        fileInputRef.current.click()
     }
 
     const handleFileChange = async (e) => {
@@ -45,11 +45,13 @@ export default function Profil() {
         formData.append('image', file) // Ajouter le fichier à l'objet FormData
 
         try {
-            // Appeler la fonction updateUserImage pour mettre à jour la photo de profil
-            await updateUserImage(formData)
-
+            const response = await updateUserImage(formData);
+            if (response && response.image) {
+                localStorage.setItem('image', response.image);
+                setUser((prevUser) => ({ ...prevUser, image: response.image }));
+            }
         } catch (error) {
-            console.error('Erreur lors de la mise à jour de la photo de profil:', error)
+            console.error('Erreur lors de la mise à jour de la photo:', error);
         }
     };
 
@@ -67,10 +69,10 @@ export default function Profil() {
                         <div className="flex items-center">
                             <div className="relative w-32 h-32 -mt-16 border-4 border-white rounded-full cursor-pointer" >
                                 <Avatar className="w-32 h-32 -mt-1 border-4 border-white rounded-full">
-                                    <AvatarImage src={user.image ? `/storage/${user.image}` : ''} alt="User" className="w-full h-full rounded-full" />
+                                    <AvatarImage src={`http://localhost:8000/storage/${user.image}`} alt="User" className="w-full h-full rounded-full" />
                                     <AvatarFallback>CA</AvatarFallback>
                                 </Avatar>
-                                <button className="absolute bottom-0 right-0 bg-blue-700 rounded-full p-1.5 text-white hover:bg-blue-600" >
+                                <button className="absolute bottom-0 right-0 bg-blue-700 rounded-full p-1.5 text-white hover:bg-blue-600" onClick={handleChangeImage} >
                                     <Camera size={16} />
                                 </button>
                                 <input

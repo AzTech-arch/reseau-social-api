@@ -22,13 +22,13 @@ class DashboardController extends Controller
 
         // Mettre à jour le chemin de l'image dans la base de données
         $user->image = $imagePath;
-        
+
         // Sauvegarder les modifications
         $user->save();
 
         return response()->json([
             'message' => 'Image updated successfully',
-            'image' => $imagePath,
+            'user' => $user,
         ]);
     }
 }
