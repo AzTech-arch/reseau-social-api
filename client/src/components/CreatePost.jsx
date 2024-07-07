@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useAuth from '../hooks/useAuth'
 import { BsImage } from "react-icons/bs";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -10,8 +11,8 @@ export default function CreatePost() {
     /**
      * ! STATE (état, données) de l'application
      */
+    const { user } = useAuth()
    
-
     const [open, setOpen] = useState(false);
     const [file, setFile] = useState(null);
 
@@ -42,7 +43,7 @@ export default function CreatePost() {
 
                 <Input
                     type="text"
-                    placeholder={`Quoi de neuf, cousema ?`}
+                    placeholder={`Quoi de neuf, ${user.first_name} ?`}
                     className="bg-gray-100 rounded-full cursor-pointer"
                     readOnly
                     onClick={toggleDialog}
