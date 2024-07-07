@@ -8,6 +8,7 @@ import Register from "./pages/Register"
 import DashboardClient from "./pages/DashboardClient"
 import { UserProvider } from "./contexts/UserContext"
 import Profil from "./pages/Profil"
+import InvitationClient from "./pages/InvitationClient"
 
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
         <Route element={<PrivateRoute />}>
           <Route path="/friendzy" element={<DashboardClient />} />
           <Route path="/friendzy/profil" element={<Profil />} />
+          <Route path="/friendzy/invitation" element={<InvitationClient />} />
         </Route>
 
 
