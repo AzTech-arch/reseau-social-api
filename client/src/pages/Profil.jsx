@@ -22,8 +22,10 @@ const contacts = [
 ];
 
 export default function Profil() {
-    const { user } = useAuth()
-    const fileInputRef = useRef < HTMLInputElement > (null)
+    const { user, updateUserImage } = useAuth()
+
+    const fileInputRef = useRef(null);
+    const [selectedFile, setSelectedFile] = useState(null)
     const [showComments, setShowComments] = useState(false);
 
     const toggleComments = () => {
@@ -31,28 +33,25 @@ export default function Profil() {
     };
 
     // Ouvrir le file input pour choisir une photo
-    // const handleChangeImage = () => {
-    //     fileInputRef.current?.click();
-    // }
+    const handleChangeImage = () => {
+        fileInputRef.current?.click();
+    }
 
-    // Mettre à jour la photo de profil
-    // const handleFileChange = async () => {
-    //     const file = e.target.files?.[0];
-    //     if (file) {
-    //         const formData = new FormData();
-    //         formData.append('image', file);
+    const handleFileChange = async (e) => {
+        const file = e.target.files[0] // Récupérer le fichier sélectionné
+        setSelectedFile(file) // Mettre à jour le state avec le fichier sélectionné
 
-    //         try {
-    //             const response = await updateUserImage(formData)
-    //             if (response && response.image) {
-    //                 localStorage.setItem('image', response.image)
-    //                 window.location.reload()
-    //             }
-    //         } catch (err) {
-    //             console.error('Erreur lors de la mise à jour de la photo:', err);
-    //         }
-    //     }
-    // }
+        const formData = new FormData() // Créer un objet FormData
+        formData.append('image', file) // Ajouter le fichier à l'objet FormData
+
+        try {
+            // Appeler la fonction updateUserImage pour mettre à jour la photo de profil
+            await updateUserImage(formData)
+
+        } catch (error) {
+            console.error('Erreur lors de la mise à jour de la photo de profil:', error)
+        }
+    };
 
     return (
         <>
@@ -68,7 +67,7 @@ export default function Profil() {
                         <div className="flex items-center">
                             <div className="relative w-32 h-32 -mt-16 border-4 border-white rounded-full cursor-pointer" >
                                 <Avatar className="w-32 h-32 -mt-1 border-4 border-white rounded-full">
-                                    <AvatarImage src="" alt="User" className="w-full h-full rounded-full" />
+                                    <AvatarImage src={user.image ? `/storage/${user.image}` : ''} alt="User" className="w-full h-full rounded-full" />
                                     <AvatarFallback>CA</AvatarFallback>
                                 </Avatar>
                                 <button className="absolute bottom-0 right-0 bg-blue-700 rounded-full p-1.5 text-white hover:bg-blue-600" >
@@ -76,9 +75,10 @@ export default function Profil() {
                                 </button>
                                 <input
                                     type="file"
-                                   
+                                    ref={fileInputRef}
                                     style={{ display: 'none' }}
-                                 
+                                    onChange={handleFileChange}
+
                                 />
                             </div>
 
