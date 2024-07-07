@@ -37,6 +37,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/user/{id}', [AuthenticatedUserSessionController::class, 'show']);
     Route::post('/friend-request', [FriendRequestController::class, 'store']);
+    Route::get('/search/users', [AuthenticatedUserSessionController::class, 'search']);
 });
 
 // Route public 

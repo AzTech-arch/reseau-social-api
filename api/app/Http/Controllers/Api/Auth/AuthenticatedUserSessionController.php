@@ -56,6 +56,16 @@ class AuthenticatedUserSessionController extends Controller
         ]);
     }
 
+
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+        $users = User::where('first_name', 'LIKE', "%{$query}%")
+            ->orWhere('last_name', 'LIKE', "%{$query}%")
+            ->get();
+        return response()->json($users);
+    }
+
     public function destroy(Request $request)
     {
         // Récupérer l'utilisateur authentifié
