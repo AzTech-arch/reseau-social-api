@@ -6,6 +6,7 @@ import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import DashboardClient from "./pages/DashboardClient"
+import { UserProvider } from "./contexts/UserContext"
 
 
 export default function App() {
@@ -24,21 +25,24 @@ export default function App() {
    * ! AFFICHAGE (render) de l'application
    */
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route element={<PublicRoute />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-      </Route>
+    <UserProvider>
+      <Routes>
+        {/* Public Routes */}
+        <Route element={<PublicRoute />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
 
 
-      {/* Protected Routes */}
-      <Route element={<PrivateRoute />}>
-        <Route path="/friendzy" element={<DashboardClient />} />
-      </Route>
+        {/* Protected Routes */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/friendzy" element={<DashboardClient />} />
+        </Route>
 
 
-    </Routes>
+      </Routes>
+    </UserProvider>
+
   )
 }

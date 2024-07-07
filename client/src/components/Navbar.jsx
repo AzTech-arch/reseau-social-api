@@ -1,5 +1,5 @@
 import { Button } from './ui/button'
-
+import useAuth from '../hooks/useAuth'
 import logo from '../assets/images/logo.png'
 import { Input } from "./ui/input"
 import { Link, useNavigate } from 'react-router-dom'
@@ -13,24 +13,25 @@ export default function Navbar() {
     /**
      * ! STATE (état, données) de l'application
      */
-    
-   
+
+    const navigate = useNavigate()
+    const { user, logout } = useAuth()
 
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
 
-    // const handleLogout = async () => {
-    //     try {
-    //         await logout()
-    //         // Déconnexion réussie, rediriger vers la page de connexion
-    //         navigate('/login')
+    const handleLogout = async () => {
+        try {
+            await logout()
+            // Déconnexion réussie, rediriger vers la page de connexion
+            navigate('/login')
 
-    //     } catch (error) {
-    //         // Afficher le message d'erreur
-    //         console.error('Logout failed:', error)
-    //     }
-    // }
+        } catch (error) {
+            // Afficher le message d'erreur
+            console.error('Logout failed:', error)
+        }
+    }
 
 
     /**
@@ -101,7 +102,7 @@ export default function Navbar() {
 
 
                         <DropdownMenuContent className="w-56" align='center' forceMount>
-                            <DropdownMenuLabel>Salut👋 cousema</DropdownMenuLabel>
+                            <DropdownMenuLabel>Salut👋 {}</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuGroup>
                                 <Link to="/friendzy/profil">
@@ -118,7 +119,7 @@ export default function Navbar() {
                                 </Link>
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem  >
+                            <DropdownMenuItem onClick={handleLogout} >
                                 <LogOut className="mr-2 h-4 w-4" />
                                 <span>Déconnexion</span>
                             </DropdownMenuItem>

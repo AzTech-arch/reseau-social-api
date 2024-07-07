@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { z } from "zod"
+import useAuth from '../hooks/useAuth'
 import { Button } from "./ui/button"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Eye, EyeOff } from "lucide-react"
 import { Input } from "./ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -19,6 +20,8 @@ export default function LoginForm() {
     /**
      * ! STATE (état, données) de l'application
      */
+    const { login } = useAuth()
+    const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
 
     const form = useForm({
@@ -42,7 +45,9 @@ export default function LoginForm() {
         }
 
         try {
-            console.log(dataLogin)
+            await login(dataLogin)
+            // Authentification réussie, rediriger vers le tableau de bord
+            navigate('/friendzy')
 
         } catch (error) {
             // Afficher l'erreur dans la console
