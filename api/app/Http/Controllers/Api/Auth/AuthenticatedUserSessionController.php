@@ -44,4 +44,18 @@ class AuthenticatedUserSessionController extends Controller
             'message' => 'Invalid credentials'
         ], 401);
     }
+
+    public function destroy(Request $request)
+    {
+        // Récupérer l'utilisateur authentifié
+        $user = $request->user();
+
+        // Révoquer tous les tokens d'authentification de l'utilisateur
+        $user->tokens()->delete();
+
+        // Retourner un message de succès
+        return response()->json([
+            'message' => 'User logged out successfully'
+        ], 200);
+    }
 }

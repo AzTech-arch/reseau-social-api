@@ -39,6 +39,7 @@ export const login = async (dataLogin) => {
 // Déconnecter un utilisateur
 export const logout = async () => {
     try {
+        await api.post('/logout');
         // Supprimer les données utilisateur du stockage local
         localStorage.removeItem('userToken')
         localStorage.removeItem('userId')
