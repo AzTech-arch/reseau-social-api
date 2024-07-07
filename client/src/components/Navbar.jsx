@@ -102,7 +102,7 @@ export default function Navbar() {
 
 
                         <DropdownMenuContent className="w-56" align='center' forceMount>
-                            <DropdownMenuLabel>Salut👋 {}</DropdownMenuLabel>
+                            <DropdownMenuLabel>Salut👋 {user.first_name}</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuGroup>
                                 <Link to="/friendzy/profil">
