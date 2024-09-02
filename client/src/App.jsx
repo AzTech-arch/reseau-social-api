@@ -42,6 +42,7 @@ export default function App() {
           <Route path="/friendzy" element={<DashboardClient />} />
           <Route path="/friendzy/profil" element={<Profil />} />
           <Route path="/friendzy/invitation" element={<InvitationClient />} />
+          {/* <Route path="/friendzy/invitation" element={<InvitationClient />} /> */}
         </Route>
 
 
