@@ -43,6 +43,7 @@ export default function App() {
           <Route path="/friendzy/profil" element={<Profil />} />
           <Route path="/friendzy/invitation" element={<InvitationClient />} />
           {/* <Route path="/friendzy/invitation/:id" element={<InvitationClient />} /> */}
+          {/* fuck you juan */}
         </Route>
 
 

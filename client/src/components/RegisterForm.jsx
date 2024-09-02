@@ -150,7 +150,7 @@ export default function RegisterForm() {
                                     </Button>
                                 </div>
                             </div>
-                            <Button type="submit" className="w-full bg-cyan-700">S'inscrire</Button>
+                            <Button type="submit" className="w-full bg-cyan-700">S inscrire</Button>
 
                             <div className="relative">
                                 <div className="absolute inset-0 flex items-center">
